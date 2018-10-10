@@ -1,0 +1,2832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="assets/ico/favicon.png">
+    <meta name="description" content="Swoole Cheat Sheet , Codes , function , methods of swoole extension">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="@toxmc">
+    <title>Swoole 4.x 速查表</title>
+    <meta name="description" content="Swoole 4.x LTS 速查表方便快速浏览，支持并且只支持 Swoole 4.x LTS，支持手机访问，支持中英文版本">
+    <meta name="keywords" content="Swoole 4.x LTS 速查表，Swoole 4.x 教程，Swoole 4.x 新手教程，Swoole 4.x Artisan，Swoole 4.x Auth，Swoole 4.x Blade，Swoole 4.x Cache，Swoole 4.x Composer，Swoole 4.x Config，Swoole 4.x Container，Swoole 4.x Cookie，Swoole 4.x DB，Swoole 4.x Environment，Swoole 4.x Event，Swoole 4.x File，Swoole 4.x Form，Swoole 4.x HTML，Swoole 4.x Helper，Swoole 4.x Input，Swoole 4.x Lang，Swoole 4.x Log，Swoole 4.x Mail，Swoole 4.x Model，Swoole 4.x Pagination，Swoole 4.x Queue，Swoole 4.x Redirect，Swoole 4.x Request，Swoole 4.x Response，Swoole 4.x Route，Swoole 4.x SSH，Swoole 4.x Schema，Swoole 4.x Security，Swoole 4.x Session，Swoole 4.x String，Swoole 4.x URL，Swoole 4.x UnitTest，Swoole 4.x Validation，Swoole 4.x View">
+    <link rel="stylesheet" href="assets/css/normalize.css"/>
+    <link rel="stylesheet" href="assets/css/foundation.min.css"/>
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="assets/css/page.css"/>
+</head>
+<body>
+
+<div class="off-canvas-wrapper wrapper-container">
+    <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
+
+        <div class="off-canvas position-left sidebar-canvas" id="offCanvasLeft" data-off-canvas data-position="left">
+            <button class="close-button" aria-label="Close menu" type="button" data-close>
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <ul class="mobile-ofc vertical menu">
+                <li>
+                    <button class="warning hollow button check-all-button">查看全部</button>
+                </li>
+                <li>
+                    <ul class="submenu menu vertical mobile-cmd-cell" data-submenu>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="off-canvas-content" data-off-canvas-content>
+            <div class="title-bar hide-for-medium">
+                <div class="title-bar-left">
+                    <button class="menu-icon" type="button" data-open="offCanvasLeft"></button>
+                </div>
+            </div>
+        </div>
+
+        <a href="#top" id="top-button" title="Top"><i class="icon-arrow-up"></i></a>
+        <a href="#" class="comments-toggle" title="隐藏/展示代码注释"><i class="icon-eye-close"></i></a>
+
+        <div class="row full-width">
+
+            <div class="large-2 columns code-column sidebar">
+                <h5 class="sidebar-title">Swoole 4.x LTS 速查表</h6>
+                <hr class="horizonal-line">
+                <div class="show-for-medium">
+                    <button class="warning hollow button check-all-button">查看全部</button>
+
+                    <div class="clearfix"></div>
+                    <ul class="sidebar-menu">
+                    </ul>
+
+                    <div class="clearfix"></div>
+
+                    <hr class="horizonal-line">
+                </div>
+                <ul class="sidebar-bottom">
+                    <li><a href="https://group.swoole.com/" class="button expand small radius alert">Swoole China 社区</a></li>
+                    <li><a href="https://wiki.swoole.com/" class="button expand small radius alert">Swoole 中文文档</a></li>
+                    <li><a href="https://www.swoole.co.uk/docs/" class="button expand small radius alert">Swoole英文文档</a></li>
+                    <li><a href="http://compiler.swoole.com/" class="button expand small radius alert">Swoole 商业支持</a></li>
+                    <li><a href="https://github.com/swoole/swoole-src" class="button expand small radius alert">Swoole源码GITHUB</a></li>
+                    <li><a href="https://gitee.com/swoole/swoole" class="button expand small radius alert">Swoole源码开源中国</a></li>
+                    <li><a href="https://group.swoole.com/home/explore/category-9" class="button expand small radius alert">Swoole 企业招聘</a></li>
+                    <li>
+                        <a href="" target="_blank" rel="nofollow" title="" style="display: block;margin-bottom: 23px;">
+                            <img src="./assets/images/reward.jpeg" style="width: 180px;border: 1px solid #d8d3d3;box-shadow: 0 0 30px #d4d4d4;-moz-box-shadow: 0 0 30px #ccc;-webkit-box-shadow: 0 0 30px #d4d4d4;margin-bottom: 10px;margin-top: 21px;border-radius: 4px;">
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="http://weibo.com/1837553744/" target="_blank">by mc²</a>
+                    </li>
+
+                    <li class="social-icon">
+                        <a href="http://github.com/toxmc" target="_blank" data-tooltip aria-haspopup="true" class="top" data-disable-hover="false" tabindex="2" title="此项目由 toxmc 倾情维护">
+                            <div class="avatar"></div>
+                        </a>
+                        <a href="https://github.com/toxmc/Swoole-cheatsheet" target="_blank" data-tooltip aria-haspopup="true" class="top" data-disable-hover="false" tabindex="2" title="在 GitHub 查看此项目">
+                            <i class="icon-github"></i>
+                        </a>
+                    </li>
+                    <li class="languages-flag">
+                        <a href="./index.html"><i class="cn flag"></i></a>
+                        <span class="vertical-line">|</span>
+                        <a href="./index_en-US.html"><i class="gb flag"></i></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="large-10 columns code-column code-container">
+                <div class="grid">
+
+                    <section class="cmd-description grid-item">
+                        <h4><a name="Server_Function" href="#Server_Function">Server 函数列表</a> <a href="https://wiki.swoole.com/wiki/page/15.html" title="Server Function Docs"><i class="icon-file-text"></i></a></h4>
+                        <pre class="prettyprint lang-php">
+
+// 创建一个异步Server对象。
+$serv = new swoole_server('0.0.0.0', '9501', $mode = SWOOLE_PROCESS, $sock_type = SWOOLE_SOCK_TCP);
+
+// swoole_server->set函数用于设置swoole_server运行时的各项参数。
+// 服务器启动后通过$serv->setting来访问set函数设置的参数数组。
+
+$serv->set(array(
+    'reactor_num' => 2,
+    'worker_num' => 4,
+    'backlog' => 128,
+    'max_request' => 50,
+    'dispatch_mode' => 1,
+));
+
+// 注册Server的事件回调函数。
+$serv->on('connect', function ($serv, $fd){
+    echo "Client:Connect.\n";
+});
+
+// 增加监听的端口。业务代码中可以通过调用swoole_server::connection_info来获取某个连接来自于哪个端口。
+$serv->addlistener("127.0.0.1", 9502, SWOOLE_SOCK_TCP);
+// 监听一个新的Server端口，此方法是addlistener的别名
+$serv->listen("127.0.0.1", 9503, SWOOLE_SOCK_TCP);
+
+// 添加一个用户自定义的工作进程。此函数通常用于创建一个特殊的工作进程，用于监控、上报或者其他特殊的任务。
+$process = new swoole_process(function($process) use ($server) {
+    while (true) {
+        $msg = $process->read();
+        foreach($server->connections as $conn) {
+            $server->send($conn, $msg);
+        }
+    }
+});
+$server->addProcess($process);
+
+// 启动server，监听所有TCP/UDP端口
+$serv->start();
+
+// 重启所有worker进程。$only_reload_taskworkrer 是否仅重启task进程
+$serv->reload($only_reload_taskworkrer = false);
+
+// 使当前worker进程停止运行，并立即触发onWorkerStop回调函数。
+swoole_server->stop(int $worker_id = -1, bool $waitEvent = false);
+
+// 此函数可以用在worker进程内。向主进程发送SIGTERM也可以实现关闭服务器。
+$serv->shutdown();
+
+// tick定时器，可以自定义回调函数。此函数是swoole_timer_tick的别名。
+$serv->tick(1000, function ($id) {
+    var_dump($id);
+});
+
+// 在指定的时间后执行函数,swoole_server::after函数是一个一次性定时器，执行完成后就会销毁
+$serv->after(2000, function(){
+    echo "Timeout: ".microtime(true)."\n";
+});
+
+// 延后执行一个PHP函数。Swoole底层会在EventLoop循环完成后执行此函数。
+// 此函数的目的是为了让一些PHP代码延后执行，程序优先处理IO事件。
+$server->defer(function() use ($db) {
+    $db->close();
+});
+
+// 清除tick/after定时器，此函数是 swoole_timer_clear 的别名。
+$timer_id = $server->tick(1000, function ($id) use ($server) {
+    $server->clearTimer($id);
+});
+
+// 关闭客户端连接,操作成功返回true，失败返回false.
+$serv->close($fd);
+
+// 向客户端发送数据 $data，发送的数据，TCP协议最大不得超过2M，可修改 buffer_output_size 改变允许发送的最大包长度
+// UDP协议不得超过65507，UDP包头占8字节, IP包头占20字节，65535-28 = 65507
+$serv->send($fd, 'Swoole: '.$data);
+
+// 发送文件到TCP客户端连接
+$serv->sendfile($fd, __DIR__.'/test.jpg');
+
+// 向任意的客户端IP:PORT发送UDP数据包
+$serv->sendto("127.0.0.1", 9999, "hello world");
+
+// 阻塞地向客户端发送数据
+server->sendwait($fd, "hello world");
+
+// 此函数可以向任意worker进程或者task进程发送消息。在非主进程和管理进程中可调用。收到消息的进程会触发onPipeMessage事件
+$serv->sendMessage("hello task process", $worker_id);
+
+// 检测fd对应的连接是否存在,$fd对应的TCP连接存在返回true，不存在返回false
+$serv->exist($fd)
+
+// 停止接收数据。调用此函数后会将连接从EventLoop中移除，不再接收客户端数据
+$serv->pause($fd)
+
+// 恢复数据接收。与pause方法成对使用,调用此函数后会将连接重新加入到EventLoop中，继续接收客户端数据
+$serv->resume(int $fd);
+
+// swoole_server->getClientInfo函数用来获取连接的信息，别名是swoole_server->connection_info
+$fdinfo = $serv->connection_info($fd);
+
+// 用来遍历当前Server所有的客户端连接,方法是基于共享内存的，不存在IOWait
+// 推荐使用 swoole_server::$connections 迭代器来遍历连接，getClientList的别名是connection_list
+$conn_list = $serv->getClientList($start_fd, 10);
+
+// 将连接绑定一个用户定义的UID，可以设置dispatch_mode=5设置以此值进行hash固定分配。
+// 可以保证某一个UID的连接全部会分配到同一个Worker进程。
+$serv->bind($fd, $uid)
+
+// 得到当前Server的活动TCP连接数，启动时间，accpet/close的总次数等信息。
+$serv_stats = $serv->stats();
+
+// 投递一个异步任务到task_worker池中。此函数是非阻塞的，执行完毕会立即返回。Worker进程可以继续处理新的请求。
+// 使用Task功能，必须先设置 task_worker_num,并且必须设置Server的onTask和onFinish事件回调函数
+$task_id = $serv->task("some data");
+
+// taskwait与task方法作用相同，用于投递一个异步的任务到task进程池去执行。
+// 与task不同的是taskwait是同步等待的，直到任务完成或者超时返回。
+$serv->taskwait(['type' => 'array', 'value' => $data]);
+
+// 并发执行多个Task,$tasks 必须为数字索引数组，不支持关联索引数组
+$tasks[] = mt_rand(1000, 9999); // 任务1
+$tasks[] = mt_rand(1000, 9999); // 任务2
+var_dump($tasks);
+// 等待所有Task结果返回，超时为10s
+$results = $serv->taskWaitMulti($tasks, 10.0);
+
+// 并发执行Task并进行协程调度
+$result = $serv->taskCo($tasks, 0.5);
+
+// 此函数用于在task进程中通知worker进程，投递的任务已完成。此函数可以传递结果数据给worker进程。
+$serv->finish("response");
+
+// 检测服务器所有连接，并找出已经超过约定时间的连接。
+// 如果指定if_close_connection，则自动关闭超时的连接。未指定仅返回连接的fd数组。
+$closeFdArr = $serv->heartbeat();
+
+// 获取最近一次操作错误的错误码。业务代码中可以根据错误码类型执行不同的逻辑。
+$errCode = $serv->getLastError();
+
+// 调用此方法可以得到底层的socket句柄，返回的对象为sockets资源句柄。
+// 依赖PHP的sockets扩展，并且编译swoole时需要开启--enable-sockets选项
+$socket = $serv->getSocket();
+
+// 设置客户端连接为保护状态，不被心跳线程切断。
+$serv->protect(int $fd, bool $value = 1);
+
+// 确认连接，与enable_delay_receive或wait_for_bind配合使用。当客户端建立连接后，并不监听可读事件。
+// 仅触发onConnect事件回调在onConnect回调中执行confirm确认连接，这时服务器才会监听可读事件，接收来自客户端连接的数据。
+$serv->confirm(int $fd);
+              </pre>
+                    </section>
+
+                    <section class="cmd-description grid-item">
+                        <h4><a name="Server_attribute" href="#Server_attribute">Server 属性列表</a> <a href="https://wiki.swoole.com/wiki/page/243.html" title="Server Attribute Docs"><i class="icon-file-text"></i></a></h4>
+                        <pre class="prettyprint lang-php">
+
+// swoole_server::set()函数所设置的参数会保存到swoole_server::$setting属性上。在回调函数中可以访问运行参数的值。
+echo $serv->setting['worker_num'];
+
+// 返回当前服务器主进程的PID。
+int $serv->master_pid;
+
+// 返回当前服务器管理进程的PID。
+int $serv->manager_pid;
+
+// 得到当前Worker进程的编号，包括Task进程。Worker进程编号范围是[0, worker_num]
+// Task进程编号范围是[worker_num, worker_num + task_worker_num]
+int $serv->worker_id;
+
+// 得到当前Worker进程的操作系统进程ID。与posix_getpid()的返回值相同。
+int $serv->worker_pid;
+
+// 布尔类型，true表示当前的进程是Task工作进程，false表示当前的进程是Worker进程
+bool $serv->taskworker;
+
+// TCP连接迭代器，可以使用foreach遍历服务器当前所有的连接，
+// 此属性的功能与swoole_server->connnection_list是一致的，但是更加友好。遍历的元素为单个连接的fd。
+
+// 监听端口数组，如果服务器监听了多个端口可以遍历swoole_server::$ports得到所有Swoole\Server\Port对象。
+// 其中swoole_server::$ports[0]为构造方法所设置的主服务器端口。
+$ports = swoole_server::$ports;
+$ports[0]->set($settings);
+$ports[1]->on("Receive", function(){});
+
+              </pre>
+                    </section>
+
+                    <section class="cmd-description grid-item">
+                        <h4><a name="ServerConfig" href="#ServerConfig">Server 配置选项</a> <a href="https://wiki.swoole.com/wiki/page/274.html" title="Server Config @ Swoole Docs"><i class="icon-file-text"></i></a></h4>
+                        <pre class="prettyprint lang-php">
+
+$serv->set(array(
+// 通过此参数来调节主进程内事件处理线程的数量，以充分利用多核。默认会启用CPU核数相同的数量。一般设置为CPU核数的1-4倍
+'reactor_num' => 2,
+
+// 设置启动的Worker进程数。业务代码是全异步非阻塞的，这里设置为CPU的1-4倍最合理
+// 业务代码为同步阻塞，需要根据请求响应时间和系统负载来调整
+'worker_num' => 2,
+
+// 设置worker进程的最大任务数，默认为0，一个worker进程在处理完超过此数值的任务后将自动退出，进程退出后会释放所有内存和资源。
+'max_request' => 1000,
+
+// 服务器程序，最大允许的连接数, 此参数用来设置Server最大允许维持多少个TCP连接。超过此数量后，新进入的连接将被拒绝
+'max_connection' => 10000,
+
+// 配置Task进程的数量，配置此参数后将会启用task功能。所以Server务必要注册onTask
+'task_worker_num' => 2,
+
+// 设置Task进程与Worker进程之间通信的方式。1使用unix socket通信，默认模式, 2使用消息队列通信, 3使用消息队列通信，并设置为争抢模式
+'task_ipc_mode' => 1
+
+// 设置task进程的最大任务数。一个task进程在处理完超过此数值的任务后将自动退出。
+'task_max_request'         => 0,
+
+// 设置task的数据临时目录，在swoole_server中，如果投递的数据超过8192字节，将启用临时文件来保存数据
+'task_tmpdir'              => '/tmp',
+
+// 数据包分发策略默认为2。1轮循模式，2固定模式，3抢占模式，4IP分配，5UID分配
+'dispatch_mode'            => 2,
+
+// 设置dispatch函数，swoole底层了内置了5种dispatch_mode，如果仍然无法满足需求。
+// 可以使用编写C++函数或PHP函数，实现dispatch逻辑。使用方法：
+'dispatch_func' => 'my_dispatch_function',
+
+// 设置消息队列的KEY，仅在task_ipc_mode = 2/3时使用。
+// 设置的Key仅作为Task任务队列的KEY，此参数的默认值为ftok($php_script_file, 1)
+'message_queue_key'        => ftok(SYS_ROOT . 'queue.msg', 1),
+
+//  设置守护进程模式
+'daemonize'                => 1,
+
+// Listen队列长度，如backlog => 128，此参数将决定最多同时有多少个等待accept的连接
+'backlog'                  => 128,
+
+// 指定swoole错误日志文件。在swoole运行期发生的异常信息会记录到这个文件中。默认会打印到屏幕
+'log_file'                 => '/data/logs/swoole.log',
+
+// 设置swoole_server错误日志打印的等级，范围是0-5。低于log_level设置的日志信息不会抛出
+'log_level' => 1,
+
+// 启用心跳检测，此选项表示每隔多久轮循一次，单位为秒
+'heartbeat_check_interval' => 10,
+
+// 与heartbeat_check_interval配合使用。表示连接最大允许空闲的时间
+'heartbeat_idle_time'      => 20,
+
+// 打开EOF检测，此选项将检测客户端连接发来的数据，当数据包结尾是指定的字符串时才会投递给Worker进程
+// 否则会一直拼接数据包，直到超过缓存区或者超时才会中止。当出错时底层会认为是恶意连接，丢弃数据并强制关闭连接
+'open_eof_check' => true,
+
+// 启用EOF自动分包。当设置open_eof_check后，底层检测数据是否以特定的字符串结尾来进行数据缓冲
+'open_eof_split' => true,
+
+// 与 open_eof_check 或者 open_eof_split 配合使用，设置EOF字符串。
+'package_eof'              => "\r\r\n",
+
+// 打开包长检测特性。包长检测提供了固定包头+包体这种格式协议的解析。
+// 启用后，可以保证Worker进程onReceive每次都会收到一个完整的数据包。
+'open_length_check' => true,
+
+// 长度值的类型，接受一个字符参数，与php的 pack 函数一致。
+'package_length_type'   => 'N',
+
+// 设置长度解析函数，支持C++或PHP的2种类型的函数。长度函数必须返回一个整数
+'package_length_func' => 'package_length_func_name'
+
+// 设置最大数据包尺寸，单位为字节
+'package_max_length' => 2000000,
+
+// 启用CPU亲和性设置
+'open_cpu_affinity'        => 1,
+
+// cpu_affinity_ignore 设置将此CPU空出，专门用于处理网络中断
+'cpu_affinity_ignore' => [0,1],
+
+// 启用open_tcp_nodelay，开启后TCP连接发送数据时会关闭Nagle合并算法，立即发往客户端连接
+'open_tcp_nodelay' => 1,
+
+// 启用tcp_defer_accept特性，可以设置为一个数值，表示当一个TCP连接有数据发送时才触发accept
+'tcp_defer_accept' => 5
+
+// 设置SSL隧道加密，设置值为一个文件名字符串，制定cert证书和key私钥的路径
+
+'ssl_cert_file' => __DIR__.'/config/ssl.crt',
+'ssl_key_file' => __DIR__.'/config/ssl.key',
+
+// 设置OpenSSL隧道加密的算法。Server与Client使用的算法必须一致，否则SSL/TLS握手会失败，连接会被切断
+'ssl_method' => SWOOLE_SSLv3_CLIENT_METHOD,
+
+// 启用SSL后，设置ssl_ciphers来改变openssl默认的加密算法
+'ssl_ciphers' => 'ALL:!ADH:!EXPORT56:RC4+RSA:+HIGH:+MEDIUM:+LOW:+SSLv2:+EXP',
+
+// 设置worker/task子进程的所属用户
+'user' => 'swoole',
+
+// 设置worker/task子进程的进程用户组
+'group' => 'www-data',
+
+// 重定向Worker进程的文件系统根目录
+'chroot' => '/data/server/',
+
+// 在Server启动时自动将master进程的PID写入到文件,在Server关闭时自动删除PID文件
+'pid_file' => __DIR__.'/server.pid',
+
+// 调整管道通信的内存缓存区长度。Swoole使用Unix Socket实现进程间通信。
+'pipe_buffer_size' => 32 * 1024 *1024,
+
+// 配置发送输出缓存区内存尺寸
+'buffer_output_size' => 32 * 1024 *1024
+
+// 配置客户端连接的缓存区长度
+'socket_buffer_size' => 128 * 1024 *1024
+
+// swoole在配置dispatch_mode=1或3后，因为系统无法保证onConnect/onReceive/onClose的顺序，默认关闭了onConnect/onClose事件。
+// 如果应用程序需要onConnect/onClose事件，并且能接受顺序问题可能带来的安全风险，
+// 可以通过设置enable_unsafe_event为true，启用onConnect/onClose事件
+'enable_unsafe_event' => true,
+
+
+// swoole在配置dispatch_mode=1或3后，系统无法保证onConnect/onReceive/onClose的顺序，因此可能会有一些请求数据在连接关闭后，
+// 才能到达Worker进程。discard_timeout_request配置默认为true，表示如果worker进程收到了已关闭连接的数据请求，将自动丢弃。
+// discard_timeout_request如果设置为false，表示无论连接是否关闭Worker进程都会处理数据请求。
+'discard_timeout_request' => true,
+
+// 设置端口重用
+'enable_reuse_port' => true,
+
+// 设置此选项为true后，accept客户端连接后将不会自动加入EventLoop，仅触发onConnect回调。
+// worker进程可以调用$serv->confirm($fd)对连接进行确认，此时才会将fd加入EventLoop开始进行数据收发，
+// 也可以调用$serv->close($fd)关闭此连接。
+'enable_delay_receive' => true,
+
+// 启用Http协议处理
+'open_http_protocol' => true,
+
+// 启用HTTP2协议解析，需要依赖--enable-http2编译选项。默认为false
+'open_http2_protocol' => true,
+
+// 启用websocket协议处理，Swoole\WebSocket\Server会自动启用此选项
+'open_websocket_protocol' => true,
+
+// 启用mqtt协议处理，启用后会解析mqtt包头，worker进程onReceive每次会返回一个完整的mqtt数据包
+'open_mqtt_protocol' => true,
+
+// 设置异步重启开关
+'reload_async' => true,
+
+// 开启TCP快速握手特性。此项特性，可以提升TCP短连接的响应速度，在客户端完成握手的第三步，发送SYN包时携带数据
+'tcp_fastopen' => true
+
+// 开启请求慢日志。启用后Manager进程会设置一个时钟信号，定时侦测所有Task和Worker进程，
+// 一旦进程阻塞导致请求超过规定的时间，将自动打印进程的PHP函数调用栈
+'request_slowlog_file' => '/tmp/trace.log',
+
+// enable_coroutine参数，默认为true，通过设置为false可关闭内置协程
+'enable_coroutine' => false
+
+// 设置当前工作进程最大协程数量，超过max_coroutine底层将无法创建新的协程，底层会抛出错误，并直接关闭连接
+'max_coroutine' => 3000,
+));
+              </pre>
+                    </section>
+
+                    <section class="cmd-description grid-item">
+                        <h4><a name="constant" href="#app">预定义常量</a> <a href="https://wiki.swoole.com/wiki/page/26.html" title="Server constant @ Swoole Docs"><i class="icon-file-text"></i></a></h4>
+                        <pre class="prettyprint lang-js">
+
+// 预定义常量
+
+SWOOLE_VERSION 当前Swoole的版本号，字符串类型，如1.6.0
+
+// swoole_server构造函数参数
+SWOOLE_BASE 使用Base模式，业务代码在Reactor进程中直接执行
+SWOOLE_PROCESS 使用进程模式，业务代码在Worker进程中执行
+
+// swoole_client构造函数参数
+SWOOLE_SOCK_TCP 创建tcp socket
+SWOOLE_SOCK_TCP6 创建tcp ipv6 socket
+SWOOLE_SOCK_UDP 创建udp socket
+SWOOLE_SOCK_UDP6 创建udp ipv6 socket
+SWOOLE_SOCK_SYNC 同步客户端
+SWOOLE_SOCK_ASYNC 异步客户端
+
+// swoole_lock构造函数参数
+SWOOLE_FILELOCK 创建文件锁
+SWOOLE_MUTEX 创建互斥锁
+SWOOLE_RWLOCK 创建读写锁
+SWOOLE_SPINLOCK 创建自旋锁
+SWOOLE_SEM 创建信号量
+
+// SSL加密方法
+
+SWOOLE_SSLv3_SERVER_METHOD;
+SWOOLE_SSLv3_METHOD;
+SWOOLE_SSLv3_CLIENT_METHOD;
+SWOOLE_SSLv23_METHOD 默认加密方法;
+SWOOLE_SSLv23_SERVER_METHOD;
+SWOOLE_SSLv23_CLIENT_METHOD;
+SWOOLE_TLSv1_METHOD;
+SWOOLE_TLSv1_SERVER_METHOD;
+SWOOLE_TLSv1_CLIENT_METHOD;
+SWOOLE_TLSv1_1_METHOD;
+SWOOLE_TLSv1_1_SERVER_METHOD;
+SWOOLE_TLSv1_1_CLIENT_METHOD;
+SWOOLE_TLSv1_2_METHOD;
+SWOOLE_TLSv1_2_SERVER_METHOD;
+SWOOLE_TLSv1_2_CLIENT_METHOD;
+SWOOLE_DTLSv1_METHOD;
+SWOOLE_DTLSv1_SERVER_METHOD;
+SWOOLE_DTLSv1_CLIENT_METHOD;
+              </pre>
+                    </section>
+
+                    <section class="cmd-description grid-item">
+                        <h4><a name="event" href="#event">事件回调函数</a> <a href="https:// wiki.swoole.com/wiki/page/41.html" title="event function@ Swoole Docs"><i class="icon-file-text"></i></a></h4>
+                        <pre class="prettyprint lang-php">
+
+// Server启动在主进程的主线程回调此函数
+$serv->on('Start', function(Swoole\Server $server){});
+
+// 此事件在Server正常结束时发生
+$serv->on('Shutdown', function(Swoole\Server $server){});
+
+// 此事件在Worker进程/Task进程启动时发生
+$serv->on('WorkerStart', function(Swoole\Server $server, int $worker_id){});
+
+// 此事件在worker进程终止时发生
+$serv->on('WorkerStop', function(Swoole\Server $server, int $worker_id){});
+
+// 仅在开启reload_async特性后有效会先创建新的Worker进程处理新请求，旧的Worker进程自行退出。
+$serv->on('WorkerExit', function(Swoole\Server $server, int $worker_id){});
+
+// 有新的连接进入时，在worker进程中回调
+$serv->on('Connect', function(Swoole\Server $server, int $fd, int $reactorId){});
+
+// 接收到数据时回调此函数，发生在worker进程中
+$serv->on('Receive', function(Swoole\Server $server, int $fd, int $reactor_id, string $data){});
+
+// 接收到UDP数据包时回调此函数，发生在worker进程中
+$serv->on('Packet', function(Swoole\Server $server, string $data, array $client_info){});
+
+// TCP客户端连接关闭后，在worker进程中回调此函数
+$serv->on('Close', function(Swoole\Server $server, int $fd, int $reactorId){});
+
+// 当缓存区达到最高水位时触发此事件。
+$serv->on('BufferFull', function(Swoole\Server $serv, int $fd){});
+
+// 当缓存区低于最低水位线时触发此事件
+$serv->on('BufferEmpty', function(Swoole\Server $serv, int $fd){});
+
+// 在task_worker进程内被调用。worker进程可以使用swoole_server_task函数向task_worker进程投递新的任务。
+// 当前的Task进程在调用onTask回调函数时会将进程状态切换为忙碌，这时将不再接收新的Task，
+// 当onTask函数返回时会将进程状态切换为空闲然后继续接收新的Task。
+$serv->on('Task', function(Swoole\Server $serv, int $task_id, int $src_worker_id, mixed $data){});
+
+// 当worker进程投递的任务在task_worker中完成时，
+// task进程会通过swoole_server->finish()方法将任务处理的结果发送给worker进程
+$serv->on('Finish', function(Swoole\Server $serv, int $task_id, string $data){});
+
+// 当工作进程收到由 sendMessage 发送的管道消息时会触发onPipeMessage事件。worker/task进程都可能会触发onPipeMessage事件
+$serv->on('PipeMessage', function(Swoole\Server $server, int $src_worker_id, mixed $message){});
+
+// 当worker/task_worker进程发生异常后会在Manager进程内回调此函数
+$serv->on('WorkerError', function(Swoole\Server $serv, int $worker_id, int $worker_pid, int $exit_code, int $signal){});
+
+// 当管理进程启动时调用它
+$serv->on('ManagerStart', function(Swoole\Server $serv){});
+
+// 当管理进程结束时调用它
+$serv->on('ManagerStop', function(Swoole\Server $serv){});
+
+              </pre>
+                    </section>
+
+                    <section class="cmd-description grid-item">
+                        <h4><a name="Client_function" href="#Client_function">Client 方法列表</a> <a href="https://wiki.swoole.com/wiki/page/27.html" title="Client function list @ Swoole Docs"><i class="icon-file-text"></i></a></h4>
+                        <pre class="prettyprint lang-php">
+
+
+// 创建一个client客户端对象
+$cli = new swoole_client(SWOOLE_SOCK_TCP, SWOOLE_SOCK_ASYNC);
+
+// 设置客户端参数，必须在connect前执行
+$client->set([
+    'package_eof' => "\r\n\r\n",
+]);
+
+// 注册异步事件回调函数。参数1为事件类型，支持connect/error/receive/close 4种
+// 参数2为回调函数，可以是函数名字符串、匿名函数、类静态方法、对象方法。
+$client->on("connect", function($cli) {
+    $cli->send("hello world\n");
+});
+
+// 连接到远程服务器
+$cli->connect('127.0.0.1', 9501, float $timeout = 0.5, int $flag = 0)
+
+// 返回swoole_client的连接状态，返回false，表示当前未连接到服务器。返回true，表示当前已连接到服务器
+$cli->isConnected();
+
+// 调用此方法可以得到底层的socket句柄，返回的对象为sockets资源句柄
+$socket = $client->getSocket();
+
+// 用于获取客户端socket的本地host:port，必须在连接之后才可以使用
+$socketName = $client->getsockname();
+
+// 获取对端socket的IP地址和端口，仅支持SWOOLE_SOCK_UDP/SWOOLE_SOCK_UDP6类型的swoole_client对象
+var_dump($client->getpeername());
+
+// 获取服务器端证书信息,执行成功返回一个X509证书字符串信息,执行失败返回false
+var_dump($client->getPeerCert());
+
+// 发送数据到远程服务器，必须在建立连接后，才可向Server发送数据
+$client->send($data);
+
+// 向任意IP:PORT的主机发送UDP数据包，仅支持SWOOLE_SOCK_UDP/SWOOLE_SOCK_UDP6类型的swoole_client对象
+$client->sendto('::1', 9502, "admin2");
+
+// 发送文件到服务器，本函数是基于sendfile操作系统调用实现
+$cli->sendfile(__DIR__.'/test.txt');
+
+// recv方法用于从服务器端接收数据，$size 接收数据的缓存区最大长度，$flags可以接收一些特殊的SOCKET接收设置
+$cli->recv($size=65535, $flags=0)
+
+// 关闭连接,操作成功返回 true
+$cli->close();
+
+// swoole_client->sleep()调用此方法会从事件循环中移除当前socket的可读监听，停止接收数据
+// 此方法仅停止从socket中接收数据，但不会移除可写事件，所以不会影响发送队列
+
+// swoole_client->wakeup()调用此方法会重新监听可读事件，将socket连接从睡眠中唤醒,
+// 如果socket并未进入sleep模式，wakeup操作没有任何作用
+$client->on("receive", function(swoole_client $cli, $data){
+    $cli->sleep();
+    swoole_timer_after(5000, function() use ($cli) {
+        $cli->wakeup();
+    });
+});
+
+// 动态开启SSL隧道加密
+$client->enableSSL()
+
+// swoole_client的并行处理中用了select来做IO事件循环
+int swoole_client_select(array &$read, array &$write, array &$error, float $timeout);
+
+$clients = array();
+for($i=0; $i< 20; $i++){
+    $client = new swoole_client(SWOOLE_SOCK_TCP, SWOOLE_SOCK_SYNC); // 同步阻塞
+    $ret = $client->connect('127.0.0.1', 9501, 0.5, 0);
+    if (!$ret) {
+        echo "Connect Server fail.errCode=".$client->errCode;
+    } else {
+        $client->send("HELLO WORLD\n");
+        $clients[$client->sock] = $client;
+    }
+}
+
+while (!empty($clients)) {
+    $write = $error = array();
+    $read = array_values($clients);
+    $n = swoole_client_select($read, $write, $error, 0.6);
+    if ($n > 0) {
+        foreach ($read as $index => $c) {
+            echo "Recv #{$c->sock}: " . $c->recv() . "\n";
+            unset($clients[$c->sock]);
+        }
+    }
+}
+
+              </pre>
+                    </section>
+
+                    <section class="cmd-description grid-item">
+                        <h4><a name="Client_event" href="#events">Client 回调函数</a> <a href="https://wiki.swoole.com/wiki/page/459.html" title="Client Events @ Swoole Docs"><i class="icon-file-text"></i></a></h4>
+                        <pre class="prettyprint lang-php">
+
+// 客户端连接服务器成功后会回调此函数
+$client->on("connect", function(swoole_client $cli) {});
+
+// 连接服务器失败时会回调此函数。
+$client->on("error", function(swoole_client $cli){});
+
+// 客户端收到来自于服务器端的数据时会回调此函数
+$client->on("receive", function(swoole_client $cli, $data){});
+
+// 连接被关闭时回调此函数
+$client->on("close", function(swoole_client $cli){});
+
+// 当缓存区达到最高水位时触发此事件，设置client->buffer_high_watermark选项来控制缓存区高水位线
+$client->on("bufferFull", function(swoole_client $cli){});
+
+// 当缓存区低于最低水位线时触发此事件，设置client->buffer_low_watermark来控制缓存区低水位线
+$client->on("bufferEmpty", function(swoole_client $cli){});
+
+              </pre>
+                    </section>
+
+                    <section class="cmd-description grid-item">
+                        <h4><a name="Client_attribute" href="#Client_attribute">Client 属性列表</a> <a href="https://wiki.swoole.com/wiki/page/34.html" title="Client attribute @ Swoole Docs"><i class="icon-file-text"></i></a></h4>
+                        <pre class="prettyprint lang-php">
+// 类型为int型。当connect/send/recv/close失败时，会自动设置$swoole_client->errCode的值。
+// errCode的值等于Linux errno。可使用socket_strerror将错误码转为错误信息。
+$client->errCode
+echo socket_strerror($client->errCode);
+
+// 类型为int。sock属性是此socket的文件描述符
+// $client->sock属性值，仅在$client->connect后才能取到。在未连接服务器之前，此属性的值为null
+$client->sock
+$sock = fopen("php://fd/".$swoole_client->sock);
+
+// 类型: boolean，表示此连接是新创建的还是复用已存在的。与SWOOLE_KEEP配合使用。
+// WebSocket客户端与服务器建立连接后需要进行握手，如果连接是复用的，那就不需要再次进行握手，直接发送WebSocket数据帧即可。
+$client->reuse
+
+if ($client->reuse) {
+    $client->send($data);
+} else {
+    $client->doHandShake();
+    $client->send($data);
+}
+
+                        </pre>
+                        </section>
+                    <section class="cmd-description grid-item">
+                        <h4><a name="Client_constant" href="#Client_constant">Client 常量</a> <a href="https://wiki.swoole.com/wiki/page/504.html" title="Client constant @ Swoole Docs"><i class="icon-file-text"></i></a></h4>
+                        <h6>基础使用</h6>
+                        <pre class="prettyprint lang-php">
+
+$client->recv(8192, swoole_client::MSG_PEEK | swoole_client::MSG_DONTWAIT);
+
+// 用于swoole_client->recv方法的第二个参数，阻塞等待直到收到指定长度的数据后返回。
+swoole_client::MSG_WAITALL
+
+// 非阻塞接收数据，无论是否有数据都会立即返回。
+swoole_client::MSG_DONTWAIT
+
+// 窥视socket缓存区中的数据。设置MSG_PEEK参数后，recv读取数据不会修改指针，
+// 因此下一次调用recv仍然会从上一次的位置起返回数据。
+swoole_client::MSG_PEEK
+
+// 读取带外数据。
+swoole_client::MSG_OOB
+
+          </pre>
+                    </section>
+
+                    <section class="cmd-description grid-item">
+                        <h4><a name="Client_config" href="#Client_config">Client 配置选项</a> <a href="https://wiki.swoole.com/wiki/page/p-client_setting.html" title="Pagination @ Swoole Docs"><i class="icon-file-text"></i></a></h4>
+                        <pre class="prettyprint lang-php">
+// Swoole\Client和Swoole\Http\Client可以使用set方法设置一些选项，启用某些特性。
+
+// 结束符检测
+$client->set(array(
+    'open_eof_check' => true,
+    'package_eof' => "\r\n\r\n",
+    'package_max_length' => 1024 * 1024 * 2,
+))
+
+// 长度检测
+$client->set(array(
+    'open_length_check'     => 1,
+    'package_length_type'   => 'N',
+    'package_length_offset' => 0,
+    'package_body_offset'   => 4,
+    'package_max_length'    => 2000000,
+));
+
+// MQTT协议
+// 启用MQTT协议解析，onReceive回调将收到完整的MQTT数据包。
+$client->set(array(
+    'open_mqtt_protocol'     => true,
+));
+
+// Socket缓存区尺寸
+// 包括socket底层操作系统缓存区、应用层接收数据内存缓存区、应用层发送数据内存缓冲区
+$client->set(array(
+    'socket_buffer_size'     => 1024*1024*2,
+));
+
+// 关闭Nagle合并算法
+$client->set(array(
+    'open_tcp_nodelay'     =>  true,
+));
+
+// SSL/TLS证书
+// swoole-1.7.21或更高版本可用
+$client->set(array(
+    'ssl_cert_file'     =>  $your_ssl_cert_file_path,
+    'ssl_key_file'     =>  $your_ssl_key_file_path,
+));
+
+// 绑定IP和端口,机器有多个网卡的情况下，设置bind_address参数可以强制客户端Socket绑定某个网络地址。
+// 设置bind_port可以使客户端Socket使用固定的端口连接到外网服务器
+// swoole-1.8.5或更高版本可用
+$client->set(array(
+    'bind_address'     =>  '192.168.1.100',
+    'bind_port'     =>  36002,
+));
+
+// Socks5代理设置
+// socks5_username、socks5_password为可选参数
+$client->set(array(
+    'socks5_host'     =>  '192.168.1.100',
+    'socks5_port'     =>  1080,
+    'socks5_username' => 'username',
+    'socks5_password' => 'password',
+));
+
+// Http代理设置
+$client->set(array(
+    'http_proxy_host'     =>  '192.168.1.100',
+    'http_proxy_port'     =>  1080,
+));
+
+// ssl_verify_peer验证服务器端证书。
+// 启用后会验证证书和主机域名是否对应，如果为否将自动关闭连接
+$client->set([
+    'ssl_verify_peer' => true,
+])
+
+// 自签名证书
+// 可设置ssl_allow_self_signed为true，允许自签名证书。
+$client->set([
+    'ssl_verify_peer' => true,
+    'ssl_allow_self_signed' => true,
+])
+
+// ssl_host_name 设置服务器主机名称，与ssl_verify_peer配置或Client::verifyPeerCert配合使用。
+$client->set([
+    'ssl_host_name' => 'www.google.com',
+])
+
+// ssl_cafile 当设置ssl_verify_peer为true时， 用来验证远端证书所用到的CA证书。
+// 本选项值为CA证书在本地文件系统的全路径及文件名。
+$client->set([
+    'ssl_cafile' => '/etc/CA',
+])
+
+// ssl_capath 如果未设置ssl_cafile，或者ssl_cafile所指的文件不存在时，
+// 会在ssl_capath所指定的目录搜索适用的证书。 该目录必须是已经经过哈希处理的证书目录。
+$client->set([
+    'ssl_capath' => '/etc/capath/',
+])
+
+// package_length_func 设置长度计算函数，与Server的使用方法完全一致
+$client->set(array(
+    'open_length_check' => true,
+    'package_length_func' => function ($data) {
+        if (strlen($data) < 8) {
+            return 0;
+        }
+        $length = intval(trim(substr($data, 0, 8)));
+        if ($length <= 0) {
+            return -1;
+        }
+        return $length + 8;
+    },
+));
+              </pre>
+                    </section>
+
+                    <section class="cmd-description grid-item">
+                        <h4><a name="Coroutine" href="#Coroutine">Coroutine</a> <a href="https://wiki.swoole.com/wiki/page/752.html" title="Coroutine @ Swoole Docs"><i class="icon-file-text"></i></a></h4>
+                        <pre class="prettyprint lang-php">
+// 协程设置
+
+Swoole\Coroutine::set([
+// 设置最大协程数，超过限制后底层将无法创建新的协程
+'max_coroutine' => 4096,
+
+// 设置单个协程初始栈的内存尺寸，默认为8192
+'stack_size' => 8192
+]);
+
+// 短名称
+// 在2.0.13与2.1.0或更高版本中，增加了协程短名特性，简化了协程相关API的名称书写。
+// 可修改php.ini设置swoole.use_shortname来关闭/开启短名，默认为开启。
+
+// 创建协程
+go(function () {
+    co::sleep(0.5);
+    echo "hello";
+});
+go("test");
+go([$object, "method"]);
+
+// 通道操作
+$c = new chan(1);
+$c->push($data);
+$c->pop();
+
+// 协程客户端
+$redis = new Co\Redis;
+$mysql = new Co\MySQL;
+$http = new Co\Http\Client;
+$tcp = new Co\Client;
+$http2 = new Co\Http2\Client;
+
+// 其他 API
+co::sleep(100);
+co::fread($fp);
+co::gethostbyname('www.baidu.com');
+
+// 获取当前协程的唯一ID 仅在当前进程内唯一,成功时返回当前协程ID(int), 如果当前不在协程环境中，则返回-1
+echo Swoole\Coroutine::getuid();
+
+// 创建一个新的协程，并立即执行,创建成功返回true，失败返回false
+// 在2.1.0或更高版本中如果开启了swoole.use_shortname，可以直接使用go关键词创建新的协程
+function Swoole\Coroutine::create(callable $function);
+
+// 恢复某个协程，使其继续运行
+function Swoole\Coroutine::resume(string $coroutineId);
+
+// 挂起当前协程
+function Swoole\Coroutine::suspend();
+
+// 协程方式读取文件。
+function Coroutine::fread(resource $handle, int $length = 0);
+
+// 协程方式按行读取文件内容
+function Coroutine::fgets(resource $handle);
+
+// 协程方式向文件写入数据
+function Coroutine::fwrite(resource $handle, string $data, int $length = 0);
+
+// 进入等待状态
+function Coroutine::sleep(float $seconds);
+
+// 将域名解析为IP，基于同步的线程池模拟实现。底层自动进行协程调度
+function Coroutine::gethostbyname(string $domain, int $family = AF_INET): string | bool
+
+// 进行DNS解析，查询域名对应的IP地址，与gethostbyname不同，getaddrinfo支持更多参数设置，而且会返回多个IP结果。
+function Coroutine::getaddrinfo(string $domain, int $family = AF_INET, int $socktype = SOCK_STREAM,
+    int $protocol = IPPROTO_TCP, string $service = null): array | bool
+
+$array = co::getaddrinfo("www.baidu.com");
+
+// 执行一条shell指令。底层自动进行协程调度。
+function Coroutine::exec(string $cmd) : array;
+
+// 协程方式读取文件
+function Coroutine::readFile(string $filename);
+
+// 协程方式写入文件
+function Coroutine::writeFile(string $filename, string $fileContent, int $flags);
+
+// 获取协程状态
+function \Swoole\Coroutine::stats() : array
+              </pre>
+                    </section>
+
+                    <section class="cmd-description grid-item">
+                        <h4><a name="Coroutine_Channel" href="#Coroutine_Channel">Coroutine\Channel</a> <a href="https://wiki.swoole.com/wiki/page/p-coroutine_channel.html" title="Filesystem @ Swoole Docs"><i class="icon-file-text"></i></a></h4>
+                        <pre class="prettyprint lang-php">
+// 通道构造方法
+Coroutine\Channel->__construct(int $capacity = 0)
+
+// 向通道中写入数据
+function Coroutine\Channel->push(mixed $data) : bool;
+
+// 从通道中读取数据
+function Coroutine\Channel->pop(float $timeout = 0) : mixed;
+
+// 获取通道的状态
+function Coroutine\Channel->stats() : array;
+
+// 关闭通道。并唤醒所有等待读写的协程
+funtion Coroutine\Channel->close();
+
+// 通道读写检测。类似于socket_select和stream_select可以检测channel是否可进行读写
+// $read 数组引用类型，元素为channel对象，读操作检测，可以为null
+// $write 数组引用类型，元素为channel对象，写操作检测，可以为null
+// $timeout 浮点型，超时设置，单位为秒，最小粒度为0.001秒，即1ms。默认为0，表示永不超时
+function Coroutine\Channel::select(array &$read, array &$write, float $timeout = 0);
+
+// 获取通道中的元素数量
+public function length(): int
+
+// 判断当前通道是否为空
+public function isEmpty(): bool
+
+// 判断当前通道是否已满
+public function isFull(): bool
+
+// 构造函数中设定的容量会保存在此，不过如果设定的容量小于1则此变量会等于1
+Coroutine\Channel->$capacity
+
+// 协程通道错误code
+Coroutine\Channel->$errCode
+              </pre>
+                    </section>
+
+                    <section class="cmd-description grid-item">
+                        <h4><a name="Coroutine_Client" href="#Coroutine_Client">Coroutine\Client</a> <a href="https://wiki.swoole.com/wiki/page/p-coroutine_client.html" title="Coroutine Client @ Swoole Docs"><i class="icon-file-text"></i></a></h4>
+                        <h6>Install and run</h6>
+                        <pre class="prettyprint lang-php">
+// 提供了TCP和UDP传输协议Socket客户端的封装代码，使用时仅需new Swoole\Coroutine\Client即可。
+$client = new Swoole\Coroutine\Client(SWOOLE_SOCK_TCP);
+
+// 连接到远程服务器
+if (!$client->connect('127.0.0.1', 9501, 0.5)) {
+    exit("connect failed. Error: {$client->errCode}\n");
+}
+
+// 发送数据
+$client->send("hello world\n");
+
+// recv方法用于从服务器端接收数据。底层会自动yield，等待数据接收完成后自动切换到当前协程
+echo $client->recv();
+
+// 关闭连接。close不存在阻塞，会立即返回,执行成功返回true，失败返回false,关闭操作没有协程切换
+$client->close();
+
+// 窥视数据。peek方法直接操作socket，因此不会引起协程调度
+// 使用peek之后，再调用recv仍然可以读取到这部分数据,方法是非阻塞的，它会立即返回
+// 当socket缓存区中有数据时，会返回数据内容。缓存区为空时返回false，并设置$client->errCode
+function Coroutine\Client->peek(int $length = 65535) : string;
+              </pre>
+                    </section>
+
+                    <section class="cmd-description grid-item">
+                        <h4><a name="Coroutine_httpclient" href="#Coroutine_httpclient">Coroutine\Http\Client</a> <a href="https://wiki.swoole.com/wiki/page/p-coroutine_http_client.html" title="Coroutine http client @ Swoole Docs"><i class="icon-file-text"></i></a></h4>
+                        <h6>属性列表<a href="https://wiki.swoole.com/wiki/page/578.html" title="Coroutine http client attribute @ Swoole Docs"><i class="icon-file-text"></i></a></h6>
+                        <pre class="prettyprint lang-php">
+// errCode类型为int型。当connect/send/recv/close失败或者超时时，会自动设置Swoole\Coroutine\Http\Client->errCode的值。
+// errCode的值等于Linux errno。可使用socket_strerror将错误码转为错误信息。
+// 如果connect refuse，错误码为111如果超时，错误码为110 附录：Linux的errno定义
+echo socket_strerror($client->errCode);
+
+$cli = new Swoole\Coroutine\Http\Client('127.0.0.1', 80);
+$cli->get('/index.php');
+
+// body存储上次请求的返回包体
+echo $cli->body;
+
+// statusCode Http状态码，如200、404等。状态码如果为负数，表示连接存在问题。
+-1：连接超时，服务器未监听端口或网络丢失，可以读取$errCode获取具体的网络错误码
+-2：请求超时，服务器未在规定的timeout时间内返回response
+-3：客户端请求发出后，服务器强制切断连接
+$cli->statusCode
+$cli->close();
+
+
+</pre>
+
+
+                        <h6>方法介绍</h6>
+<pre class="prettyprint lang-php">
+// 创建一个http协程客户端
+$cli = new Swoole\Coroutine\Http\Client('127.0.0.1', 80);
+$cli->setHeaders([
+    'Host' => "localhost",
+    "User-Agent" => 'Chrome/49.0.2587.3',
+    'Accept' => 'text/html,application/xhtml+xml,application/xml',
+    'Accept-Encoding' => 'gzip',
+]);
+$cli->set([ 'timeout' => 1]);
+
+// 发起GET请求
+$cli->get('/index.php');
+echo $cli->body;
+
+// 发起POST请求,参数为URL路径，如/index.html，注意这里不能传入http://domain
+// 请求的包体数据，如果为数组底层自动会打包为x-www-form-urlencoded格式的POST内容，
+// 并设置Content-Type为application/x-www-form-urlencoded
+$cli->post('/post.php', array("a" => '1234', 'b' => '456'));
+echo $cli->body;
+
+// 升级为WebSocket连接 请求失败返回false，成功返回true
+$ret = $cli->upgrade("/");
+
+// 向WebSocket服务器推送消息，方法必须在upgrade成功之后才能执行，方法不会产生协程调度，写入发送缓存区后会立即返回
+$cli->push("hello");
+
+// 接收消息。与setDefer或upgrade配合使用
+var_dump($cli->recv());
+
+// 添加POST文件
+$cli->addFile(__FILE__, 'file1', 'text/plain');
+$cli->post('/post', ['foo' => 'bar']);
+
+// 通过Http下载文件。download与get方法的不同是download收到数据后会写入到磁盘，而不是在内存中对Http Body进行拼接
+// 因此download仅使用小量内存，就可以完成超大文件的下载
+
+$cli->download('/static/files/swoole-logo.svg', __DIR__ . '/logo.svg');
+              </pre>
+                    </section>
+
+                    <section class="cmd-description grid-item">
+                        <h4><a name="Coroutine_Http2_Client" href="#Coroutine_Http2_Client">Coroutine\Http2\Client</a> <a href="https://wiki.swoole.com/wiki/page/856.html" title="Input @ Swoole Docs"><i class="icon-file-text"></i></a></h4>
+
+                        <pre class="prettyprint lang-php">
+use Swoole\Coroutine as co;
+
+co::create(function () {
+// 构造方法 $ssl 是否开启TLS/SSL隧道加密，https网站必须设置为true
+$cli = new co\Http2\Client('127.0.0.1', 9518, $ssl = false);
+
+// 设置客户端参数，其它详细配置项请参考 Client::set 配置选项
+$cli->set([ 'timeout' => 1]);
+
+// 连接到目标服务器，连接成功，返回true连接失败，返回false。请检查errCode属性获取错误码，连接建立后可以调用send方法向服务器发送请求
+$cli->connect();
+
+$req = new co\Http2\Request;
+$req->path = "/index.html";
+$req->headers = [
+    'host' => "localhost",
+    "user-agent" => 'Chrome/49.0.2587.3',
+    'accept' => 'text/html,application/xhtml+xml,application/xml',
+    'accept-encoding' => 'gzip',
+];
+$req->cookies = ['name' => 'rango', 'email' => '1234@qq.com'];
+
+// 向服务器发送请求，底层会自动建立一个Http2的stream
+$streamId = $cli->send($req);
+var_dump($streamId);
+
+// 接受请求，调用此方法时会yield让出协程控制权，服务器返回响应内容后resume当前协程
+// 成功后返回 Swoole\Http2\Response 对象
+$resp = $cli->recv();
+var_dump($resp);
+
+// 向服务器发送更多数据帧，可以多次调用write向同一个stream写入数据帧
+$cli->write($streamId, ['int' => rand(1000, 9999)]);
+$cli->write($streamId, ['int' => rand(1000, 9999)]);
+
+//end stream $end 是否关闭流
+$cli->write($streamId, ['int' => rand(1000, 9999), 'end' => true], $end=true);
+var_dump($cli->recv());
+
+关闭连接
+$cli->close();
+
+});
+              </pre>
+                    </section>
+
+                    <section class="cmd-description grid-item">
+                        <h4><a name="Coroutine_Redis" href="#Coroutine_Redis">Coroutine\Redis</a> <a href="https://wiki.swoole.com/wiki/page/589.html" title="Coroutine Redis @ Swoole Docs"><i class="icon-file-text"></i></a></h4>
+                        <pre class="prettyprint lang-php">
+// 启用协程Redis客户端，需要安装一个第三方的异步Redis库hiredis
+sudo make;
+sudo make install;
+sudo ldconfig;
+// 需要在编译时增加--enable-async-redis来开启此功能
+// 请勿同时使用异步回调和协程Redis
+              </pre>
+                        <h6>方法列表</h6>
+                        <pre class="prettyprint lang-php">
+// 方法的使用基本与phpredis保持一致。
+
+// 不同于phpredis的实现
+// 1、尚未实现的Redis命令：scan object sort migrate hscan sscan zscan
+
+// 2、subscribe pSubscribe的使用方式，无需设置回调函数：
+
+$redis = new Swoole\Coroutine\Redis();
+$redis->connect('127.0.0.1', 6379);
+while (true) {
+    $val = $redis->subscribe(['pubsub']);
+    // 订阅的channel，以第一次调用subscribe时的channel为准，后续的subscribe调用是为了收取Redis Server的回包
+    // 如果需要改变订阅的channel，请close掉连接，再调用subscribe
+    var_dump($val);
+}
+// 3、序列化PHP变量的支持，在connect方法的第三个参数设置为true时，开启序列化php变量特性，默认为false
+
+              </pre>
+
+                        <h6>属性列表</h6>
+                        <pre class="prettyprint lang-php">
+// errCode错误代码
+1 Error in read or write
+2 Everything else...
+3 End of file
+4 Protocol error
+5 Out of memory
+
+// errMsg错误消息
+
+connected 当前Redis客户端是否连接到了服务器。
+
+// 定义的PHP常量，用于multi($mode)方法，默认为SWOOLE_REDIS_MODE_MULTI模式：
+
+SWOOLE_REDIS_MODE_MULTI;
+SWOOLE_REDIS_MODE_PIPELINE;
+
+// 用于判断type()命令的返回值：
+
+SWOOLE_REDIS_TYPE_NOT_FOUND;
+SWOOLE_REDIS_TYPE_STRING;
+SWOOLE_REDIS_TYPE_SET;
+SWOOLE_REDIS_TYPE_LIST;
+SWOOLE_REDIS_TYPE_ZSET;
+SWOOLE_REDIS_TYPE_HASH;
+              </pre>
+
+                    </section>
+
+                    <section class="cmd-description grid-item">
+                        <h4><a name="Coroutine_Socket" href="#Coroutine_Socket">Coroutine\Socket</a> <a href="https://wiki.swoole.com/wiki/page/912.html" title="Coroutine Socket @ Swoole Docs"><i class="icon-file-text"></i></a></h4>
+                        <pre class="prettyprint lang-php">
+// Swoole-2.2版本增加了更底层的Coroutine\Socket模块，相比Server和Client相关模块Socket可以实现更细粒度的一些IO操作。
+// 可使用Co\Socket短命名简化类名。
+// 协程调度Coroutine\Socket模块提供的IO操作接口均为同步编程风格，底层自动使用协程调度器实现异步非阻塞IO。
+// 错误码在执行socket相关系统调用时，可能返回-1错误，底层会设置Coroutine\Socket->$errCode属性为系统错误编号errno，
+// 请参考响应的man文档。如$socket->accept()返回错误时，errCode含义可以参考man accept中列出的错误码文档
+                        </pre>
+
+                        <pre class="prettyprint lang-php">
+
+// 构造Coroutine\Socket对象 详情可参见man socket
+$socket = new Co\Socket($domain=AF_INET, $type=SOCK_STREAM, $protocol=0);
+
+// 绑定地址和端口,此方法没有IO操作，不会引起协程切换
+$socket->bind('127.0.0.1', 9601);
+
+// 监听Socket,此方法没有IO操作，不会引起协程切换
+$socket->listen(128);
+
+// 接受客户端发起的连接。调用此方法会立即挂起当前协程，并加入EventLoop监听可读事件，当Socket可读有到来的连接时自动唤醒该协程。
+// 并返回对应客户端连接的Socket对象。该方法必须在使用listen方法后使用适用于Server端
+$client = $socket->accept();
+
+// 连接到目标服务器。调用此方法会发起异步的connect系统调用，并挂起当前协程，
+// 底层会监听可写，当连接完成或失败后，恢复该协程
+$retval = $socket->connect('localhost', 9601, double $timeout = -1);
+
+// 向对端发送数据
+$n = $socket->send("hello", double $timeout = -1);
+
+// 接收数据
+$data = $socket->recv(double $timeout = -1);
+
+// 向指定的地址和端口发送数据。用于SOCK_DGRAM类型的socket
+// 此方法没有协程调度，底层会立即调用sendto向目标主机发送数据。此方法不会监听可写
+$socket->sendto('127.0.0.1', 9601, "HELO");
+
+// 接收数据，并设置来源主机的地址和端口。用于SOCK_DGRAM类型的socket
+$data = $socket->recvfrom($peer, double $timeout = -1);
+
+// 获取socket的地址和端口信息。此方法没有协程调度开销
+function Coroutine\Socket->getsockname() | array;
+
+// 获取socket的对端地址和端口信息，仅用于SOCK_STREAM类型有连接的socket。此方法没有协程调度开销
+function Coroutine\Socket->getpeername() | array;
+
+// 关闭Socket
+function Coroutine\Socket->close() : bool;
+              </pre>
+
+                    </section>
+
+                    <section class="cmd-description grid-item">
+                        <h4><a name="Coroutine_MySQL" href="#Coroutine_MySQL">Coroutine\MySQL</a> <a href="https://wiki.swoole.com/wiki/page/p-coroutine_mysql.html" title="Coroutine MySQL @ Swoole Docs"><i class="icon-file-text"></i></a></h4>
+                        <h6>属性列表</h6>
+                        <pre class="prettyprint lang-php">
+// 连接信息，保存的是传递给构造函数的数组
+serverInfo
+
+// 连接使用的文件描述符
+sock
+
+// 是否连接上了MySQL服务器
+connected
+
+// 发生在sock上的连接错误信息
+connect_error
+
+// 发生在sock上的连接错误码
+connect_errno
+
+// MySQL服务器返回的错误信息
+error errno
+
+// 影响的行数
+affected_rows
+
+// 最后一个插入的记录id
+insert_id
+              </pre>
+                        <h6>函数列表</h6>
+                        <pre class="prettyprint lang-php">
+// 构造Coroutine\Mysql对象。
+$swoole_mysql = new Swoole\Coroutine\MySQL();
+
+// 建立MySQL连接
+$swoole_mysql->connect([
+    'host' => '127.0.0.1',
+    'port' => 3306,
+    'user' => 'user',
+    'password' => 'pass',
+    'database' => 'test',
+]);
+
+// 执行SQL语句
+$res = $swoole_mysql->query('select * from $table');
+if($res === false) {
+    return;
+}
+foreach ($res as $value) {
+    echo $value['f_filed_name'];
+}
+
+// 向MySQL服务器发送SQL预处理请求。prepare必须与execute配合使用。
+// 预处理请求成功后，调用execute方法向MySQL服务器发送数据参数
+$stmt = $db->prepare('SELECT * FROM userinfo WHERE id=?');
+if ($stmt == false) {
+    var_dump($db->errno, $db->error);
+    return false;
+}
+// execute 向MySQL服务器发送SQL预处理数据参数;
+$ret2 = $stmt->execute(array(10));
+var_dump($ret2);
+
+$stmt = $db->prepare('SELECT * FROM ckl LIMIT 1');
+$stmt->execute();
+// fetch 从结果集中获取下一行
+while($ret = $stmt->fetch()) {
+    var_dump($ret);
+}
+
+$stmt = $db->prepare('SELECT * FROM ckl LIMIT 1');
+$stmt->execute();
+// fetchAll 返回一个包含结果集中所有行的数组
+$stmt->fetchAll();
+
+$stmt = $db->prepare('CALL reply(?)');
+$res = $stmt->execute(['hello mysql!']);
+// nextResult 在一个多响应结果语句句柄中推进到下一个响应结果 (如存储过程的多结果返回)
+do {
+    var_dump($res);
+} while ($res = $stmt->nextResult());
+var_dump($stmt->affected_rows);
+
+              </pre>
+
+                    </section>
+
+                    <section class="cmd-description grid-item">
+                        <h4><a name="Coroutine_PostgreSQL" href="#Coroutine_PostgreSQL">Coroutine\PostgreSQL</a> <a href="https://wiki.swoole.com/wiki/page/883.html" title="Coroutine PostgreSQL @ Swoole Docs"><i class="icon-file-text"></i></a></h4>
+
+                        <h6>说明</h6>
+                        <pre class="prettyprint lang-shell">
+// 需要在编译swoole时增加./configure --enable-coroutine --enable-coroutine-postgresql 来开启此功能
+// 需要确保系统中已安装libpq库，mac安装完postgresq自带libpq库，环境之间有差异
+// ubuntu可能需要apt-get install libpq-dev，也可以单独指定libpq库目录如：
+./configure --enable-coroutine --enable-coroutine-postgresql --with-libpq-dir=/etc/postgresql
+              </pre>
+
+                        <h6>函数列表</h6>
+                        <pre class="prettyprint lang-php">
+// 构建Coroutine\PostgreSQL对象
+$pg = new Swoole\Coroutine\PostgreSQL();
+
+// 建立postgresql 非阻塞的协程连接
+$conn  = $pg->connect ("host=127.0.0.1 port=5432 dbname=test user=root password=");
+
+// postgresql发送异步非阻塞 协程命令
+$result = $pg->query($conn, 'SELECT * FROM test;');
+
+// 提取结果中所有行作为一个数组
+$arr = $pg->fetchAll($result);
+var_dump($arr);
+
+// 返回受影响的记录数目
+function Coroutine\PostgreSQL->affectedRows(resource $queryResult)
+
+// 返回行的数目
+function Coroutine\PostgreSQL->numRows(resource $queryResult);
+$result = $a->query('SELECT * FROM test;');
+$a->numRows($result);
+
+// fetchObject 提取一行作为对象
+// fetchAssoc 提取一行作为关联数组
+$row = 0;
+for ($row = 0 ;$row < $a->numRows($result);$row++){
+    $data = $a->fetchObject($result, $row);
+    echo $data->id . "\n";
+
+    $data = $a->fetchAssoc($result, $row);
+    echo $data['id'] . "\n";
+}
+
+// fetchArray 提取一行作为数组，fetchArray() 是 fetchRow() 的扩展版本
+$result = $a->query('SELECT * FROM test;');
+$arr = $a ->fetchArray($result,1,SW_PGSQL_ASSOC);
+
+$result = $pg ->query('SELECT * FROM test;');
+// fetchRow() 根据指定的 result 资源提取一行数据（记录）作为数组返回
+while ($row = $pg->fetchRow($result)) {
+    echo "name: $row[0]  mobile: $row[1]";
+    echo "\n";
+}
+
+// 查看表的元数据 异步非阻塞协程版
+$result = $a->metaData('test');
+              </pre>
+
+                    </section>
+
+                    <section class="cmd-description grid-item">
+                        <h4><a name="async_file_io" href="#async_file_io">异步文件系统IO</a> <a href="https://wiki.swoole.com/wiki/page/183.html" title="Async File System IO @ Swoole Docs"><i class="icon-file-text"></i></a></h4>
+
+                        <h6>说明</h6>
+                        <pre class="prettyprint lang-txt">
+异步文件系统IO
+Swoole支持2种类型的异步文件读写IO，可以使用swoole_async_set来设置AIO模式:
+
+Linux原生异步IO (AIO模式：SWOOLE_AIO_LINUX)
+基于Linux Native AIO系统调用，是真正的异步IO，并非阻塞模拟。
+
+优点：
+所有操作均在一个线程内完成，不需要开线程池
+不依赖线程执行IO，所以并发可以非常大
+
+缺点：
+只支持DriectIO，无法利用PageCache，所有对文件读写都会直接操作磁盘
+写入数据的size必须为512整数倍数
+写入数据的offset必须为512整数倍数
+线程池模式异步IO (AIO模式： SWOOLE_AIO_BASE)
+基于线程池模拟实现，文件读写请求投递到任务队列，然后由AIO线程读写文件，完成后通知主线程。AIO线程本身是同步阻塞的。所以并非真正的异步IO。
+
+优点：
+可以利用操作系统PageCache，读写热数据性能非常高，等于读内存
+可修改thread_num项设置启用的AIO线程数量
+
+缺点：
+并发较差，不支持同时读写大量文件，最大并发受限与AIO的线程数量
+冲突问题，请注意异步文件IO函数与Swoole\Process存在冲突，在创建线程池后如果调用new Process可能会导致多线程fork。
+              </pre>
+
+                        <h6>函数列表</h6>
+                        <pre class="prettyprint lang-php">
+// 异步读取文件内容
+swoole_async_readfile(__DIR__."/server.php", function($filename, $content) {
+     echo "$filename: $content";
+});
+
+// 异步写文件，调用此函数后会立即返回。当写入完成时会自动回调指定的callback函数
+swoole_async_writefile('test.log', $file_content, function($filename) {
+    echo "wirte ok.\n";
+}, $flags = 0);
+
+// 异步读文件，使用此函数读取文件是非阻塞的，当读操作完成时会自动回调指定的函数。
+// 此函数与swoole_async_readfile不同，它是分段读取，可以用于读取超大文件
+swoole_async_read(__DIR__ . '/data.txt', function ($filename, $content) {
+        echo "file: $filename\ncontent-length: " . strlen($content) . "\nContent: $content\n";
+        if (empty($content)) {
+            echo "file is end.\n";
+            return false;
+        } else {
+            return true;
+        }
+    },
+    8192
+);
+
+// 异步写文件，与swoole_async_writefile不同，swoole_async_write是分段写的
+bool swoole_async_write(string $filename, string $content, int $offset = -1, mixed $callback = NULL);
+
+swoole_async_write("data.txt", str_repeat('A', 10) . "\n", -1, function ($file, $writen) {
+    echo "write $file [$writen]\n";
+    return true;
+});
+
+// 将域名解析为IP地址。调用此函数是非阻塞的，调用会立即返回
+swoole_async_dns_lookup("www.baidu.com", function($host, $ip){
+    echo "{$host} : {$ip}\n";
+});
+
+// 异步执行Shell命令。相当于shell_exec函数，执行后底层会fork一个子进程，并执行对应的command命令
+$pid = Swoole\Async::exec("ps aux", function ($result, $status) {
+    var_dump(strlen($result), $status);
+});
+var_dump($pid);
+
+                            </pre>
+
+                    </section>
+
+                    <section class="cmd-description grid-item">
+                        <h4><a name="EventLoop" href="#EventLoop">EventLoop</a> <a href="https://wiki.swoole.com/wiki/page/242.html" title="EventLoop @ Swoole Docs"><i class="icon-file-text"></i></a></h4>
+                        <h6>说明</h6>
+                        <pre class="prettyprint lang-txt">
+EventLoop
+除了异步Server和Client库之外，Swoole扩展还提供了直接操作底层epoll/kqueue事件循环的接口。可将其他扩展创建的socket，
+PHP代码中stream/socket扩展创建的socket等加入到Swoole的EventLoop中。
+
+旧版本事件优先级
+1.通过Process::signal设置的信号处理回调函数
+2.通过Event::defer设置的延迟执行函数
+3.通过Timer::tick和Timer::after设置的定时器回调函数
+4.通过Event::cycle设置的周期回调函数
+
+新版本事件优先级 在2.1.2或1.10.3版本中调整了旧版本2和3的顺序，优先执行定时器。
+1.通过Process::signal设置的信号处理回调函数
+2.通过Timer::tick和Timer::after设置的定时器回调函数
+3.通过Event::defer设置的延迟执行函数
+4.通过Event::cycle设置的周期回调函数
+                        </pre>
+                        <h6>函数列表</h6>
+                        <pre class="prettyprint lang-txt">
+// 将一个socket加入到底层的reactor事件监听中。此函数可以用在Server或Client模式下
+// $flags为事件类型的掩码，可选择关闭/开启可读可写事件，
+// 如SWOOLE_EVENT_READ，SWOOLE_EVENT_WRITE，或者SWOOLE_EVENT_READ | SWOOLE_EVENT_WRITE
+bool swoole_event_add(mixed $sock, mixed $read_callback, mixed $write_callback = null, int $flags = null);
+
+$fp = stream_socket_client("tcp://www.qq.com:80", $errno, $errstr, 30);
+fwrite($fp,"GET / HTTP/1.1\r\nHost: www.qq.com\r\n\r\n");
+swoole_event_add($fp, function($fp) {
+    $resp = fread($fp, 8192);
+    swoole_event_del($fp);
+    fclose($fp);
+});
+// swoole_event_add不会阻塞进程，这行代码会顺序执行
+echo "Finish\n";
+
+// 修改事件监听的回调函数和掩码,参数与swoole_event_add完全相同
+bool swoole_event_set($fd, mixed $read_callback, mixed $write_callback, int $flags);
+
+// 检测传入的$fd是否已加入了事件监听
+swoole_event_add($fd, $callback, null, SWOOLE_EVENT_READ);
+// 返回 true
+var_dump(swoole_event_isset($fd, SWOOLE_EVENT_READ));
+
+// 异步写入数据，该函数可以将stream/sockets资源的数据发送变成异步的，
+// 当缓冲区满了或者返回EAGAIN，swoole底层会将数据加入到发送队列，并监听可写。socket可写时swoole底层会自动写入。
+
+$fp = stream_socket_client('tcp://127.0.0.1:9501');
+$data = str_repeat('A', 1024 * 1024*2);
+swoole_event_add($fp, function($fp) {
+     echo fread($fp);
+});
+swoole_event_write($fp, $data);
+
+// 从reactor中移除监听的socket
+bool swoole_event_del(int $sock);
+
+// 退出事件轮询，此函数仅在Client程序中有效
+void swoole_event_exit(void)
+
+// 在下一个事件循环开始时执行函数
+swoole_event_defer(function(){
+    echo "After EventLoop\n";
+});
+
+// 定义事件循环周期执行函数。此函数会在每一轮事件循环结束时调用
+Swoole\Timer::tick(2000, function ($id) {
+    var_dump($id);
+});
+
+Swoole\Event::cycle(function () {
+    echo "hello [1]\n";
+    Swoole\Event::cycle(function () {
+        echo "hello [2]\n";
+        Swoole\Event::cycle(null);
+    });
+});
+
+// 使脚本开始进行事件轮询,低于5.4的版本需加上
+// PHP5.4之前的版本没有在ZendAPI中加入注册shutdown函数。所以swoole无法在脚本结尾处自动进行事件轮询。
+void swoole_event_wait(void);
+
+// 仅执行一次reactor->wait操作，在Linux平台下相当手工调用一次epoll_wait。
+// 与swoole_event_wait不同的是，swoole_event_wait在底层内部维持了循环。
+// 此函数的目的是兼容一些框架，如amp，它在框架内部自行控制reactor的循环，
+// 而使用swoole_event_wait，swoole底层维持了控制权，就无法让出给框架方。
+void swoole_event_dispatch(void);
+              </pre>
+
+                    </section>
+
+                    <section class="cmd-description grid-item">
+                        <h4><a name="async_time" href="#async_time">异步毫秒定时器</a> <a href="https://wiki.swoole.com/wiki/page/244.html" title="异步毫秒定时器 @ Swoole Docs"><i class="icon-file-text"></i></a></h4>
+                        <h6>说明</h6>
+                        <pre class="prettyprint lang-txt">
+swoole_server中已经提供了定时器的API，如果是在客户端程序中，也想使用毫秒定时器。可以用swoole提供的swoole_timer模块。
+swoole_timer与PHP本身的pcntl_alarm是不同的。pcntl_alarm是基于时钟信号 + PHP tick函数实现,有5个缺陷：
+
+1:最大仅支持到秒，而swoole_timer可以到毫秒级别。
+2:不支持同时设定多个定时器程序。
+3:pcntl_alarm依赖declare(ticks = 1)性能很差。
+4:无法用于异步IO，只支持同步方式。
+5:无法用于ManagerStart事件中。因为Manager进程会阻塞在wait()而非epoll_wait()，定时器的fd并不会触发。
+
+swoole_timer是基于timerfd+epoll实现的异步毫秒定时器，可完美的运行在EventLoop中，与swoole_client/swoole_event等模块可以无缝结合。
+              </pre>
+                        <h6>函数列表</h6>
+                        <pre class="prettyprint lang-php">
+// 设置一个间隔时钟定时器，与after定时器不同的是tick定时器会持续触发，直到调用swoole_timer_clear清除。
+swoole_timer_tick(1000, function(){
+    echo "timeout\n";
+});
+
+// 在指定的时间后执行函数，需要1.7.7或更高版本
+swoole_timer_after(1000, function(){
+    echo "timeout\n";
+});
+
+// 使用定时器ID来删除定时器
+$timer = swoole_timer_after(1000, function(){
+    echo "timeout\n";
+});
+var_dump(swoole_timer_clear($timer));
+var_dump($timer);
+              </pre>
+                    </section>
+
+                    <section class="cmd-description grid-item">
+                        <h4><a name="async_mysql_client" href="#async_mysql_client">异步MySQL客户端</a></h4>
+
+                        <pre class="prettyprint lang-php">
+// 创建异步mysql客户端
+$db = new swoole_mysql();
+$config = array(
+    'host' => '192.168.56.102',
+    'port' => 3306,
+    'user' => 'test',
+    'password' => 'test',
+    'database' => 'test',
+    'charset' => 'utf8',
+    'timeout' => 2,
+);
+
+// 设置事件回调函数。目前仅支持onClose事件回调
+$db->on('Close', function($db){
+    echo "MySQL connection is closed.\n";
+});
+
+// 异步连接到MySQL服务器
+$db->connect($config, function ($db, $r) {
+if ($r === false) {
+    var_dump($db->connect_errno, $db->connect_error);
+    die;
+}
+
+// 转义SQL语句中的特殊字符，避免SQL注入攻击。底层基于mysqlnd提供的函数实现，需要依赖PHP的mysqlnd扩展
+$data = $db->escape("abc'efg\r\n");
+
+$sql = 'show tables';
+// 执行SQL查询
+$db->query($sql, function(swoole_mysql $db, $r) {
+    if ($r === false)
+    {
+        var_dump($db->error, $db->errno);
+    }
+    elseif ($r === true )
+    {
+        var_dump($db->affected_rows, $db->insert_id);
+    }
+    var_dump($r);
+});
+
+// begin 启动事务
+// commit 提交事务
+// rollback 回滚事务
+$db->begin(function( $db, $result) {
+    $db->query("update userinfo set level = 22 where id = 1", function($db, $result) {
+        if ($result) {
+            $db->commit(function($db, $result) {
+                echo "commit ok\n";
+            });
+        } else {
+            $db->rollback(function($db, $result) {
+                echo "rollback ok\n";
+            });
+        }
+    });
+});
+
+// 关闭MySQL连接
+$db->close();
+});
+              </pre>
+
+                    </section>
+
+                    <section class="cmd-description grid-item">
+                        <h4><a name="async_redis_client" href="#async_redis_client">异步Redis客户端</a></h4>
+
+                        <pre class="prettyprint lang-php">
+
+// Redis异步客户端构造方法，可以设置Redis连接的配置选项。
+function swoole_redis->__construct(array $options = null);
+// 超时控制
+$options['timeout'] = 1.5;
+// 设置密码
+$options['password'] = 'passwd';
+// 设置数据库
+$options['database'] = 0;
+
+// 注册事件回调函数,swoole_redis支持2种事件回调函数
+function swoole_redis->on(string $event_name, callable $callback);
+// 当Redis服务器主动关闭连接或者客户端主动调用close关闭连接时，会触发onClose事件
+function onClose(swoole_redis $redis);
+// 当客户端收到来自服务器的订阅消息时触发onMessage事件。
+function onMessage(swoole_redis $redis, array $message);
+
+// 连接到Redis服务器
+function swoole_redis->connect(string $host, int $port, callable $callback);
+
+$client = new swoole_redis();
+$client->connect('127.0.0.1', 6379, function (swoole_redis $client, $result) {
+    if ($result === false) {
+        echo "connect to redis server failed.\n";
+        return;
+    }
+    $client->set('key', 'swoole', function (swoole_redis $client, $result) {
+        var_dump($result);
+    });
+});
+
+// 魔术方法，方法名会映射为Redis指令，参数作为Redis指令的参数,$command必须为合法的Redis指令
+function swoole_redis->__call(string $command, array $params);
+
+// 关闭Redis连接，不接受任何参数
+function swoole_redis->close();
+
+// 订阅/发布消息
+$client = new swoole_redis;
+$client->on('message', function (swoole_redis $client, $result) {
+    var_dump($result);
+    static $more = false;
+    if (!$more and $result[0] == 'message')
+    {
+        echo "subscribe new channel\n";
+        $client->subscribe('msg_1', 'msg_2');
+        $client->unsubscribe('msg_0');
+        $more = true;
+    }
+});
+$client->connect('127.0.0.1', 6379, function (swoole_redis $client, $result) {
+    echo "connect\n";
+    $client->subscribe('msg_0');
+});
+
+                        </pre>
+                    </section>
+
+                    <section class="cmd-description grid-item">
+                        <h4><a name="async_http_client" href="#async_http_client">异步Http/WebSocket客户端</a> <a href="https://wiki.swoole.com/wiki/page/p-http_client.html" title="async http/WebSocket client @ Swoole Docs"><i class="icon-file-text"></i></a></h4>
+                        <pre class="prettyprint lang-php">
+// 构造方法
+swoole_http_client->__construct(string $host, int port, bool $ssl = false);
+
+// 设置客户端参数,此方法与Swoole\Client->set接收的参数完全一致，可参考 Swoole\Client->set 方法的文档
+$http->set(['timeout' => 3.0]);
+
+// 设置Http请求方法
+function swoole_http_client->setMethod(string $method);
+$client->setMethod("PUT");
+
+// 设置Http请求头
+function swoole_http_client->setHeaders(array $headers);
+
+// 设置Cookie
+function swoole_http_client->setCookies(array $cookies);
+
+// 设置Http请求的包体
+function swoole_http_client->setData(string $data);
+
+// 添加POST文件
+function swoole_http_client->addFile(string $path, string $name, string $filename=null, string $mimeType=null, int $offset=0, int $length=0)
+// 例：
+$cli = new swoole_http_client('127.0.0.1', 80);
+$cli->setHeaders(['User-Agent' => "swoole"]);
+$cli->addFile(__DIR__.'/post.data', 'post');
+$cli->addFile(dirname(__DIR__).'/test.jpg', 'debug');
+$cli->post('/dump2.php', array("xxx" => 'abc', 'x2' => 'rango'), function ($cli) {
+    echo $cli->body;
+});
+
+// 发起GET请求
+function swoole_http_client->get(string $path, callable $callback);
+// 例：
+$cli->get('/index.php', function ($cli) {
+    echo "Length: " . strlen($cli->body) . "\n";
+    echo $cli->body;
+});
+
+// 发起POST请求
+function swoole_http_client->post(string $path, mixed $data, callable $callback);
+// 例：
+$cli->post('/post.php', array("a" => '1234', 'b' => '456'), function ($cli) {
+    echo "Length: " . strlen($cli->body) . "\n";
+    echo $cli->body;
+});
+
+// 发起WebSocket握手请求，并将连接升级为WebSocket
+function swoole_http_client->upgrade(string $path, callable $callback);
+// 例：
+$cli = new swoole_http_client('127.0.0.1', 9501);
+$cli->on('message', function ($_cli, $frame) {
+    var_dump($frame);
+});
+$cli->upgrade('/', function ($cli) {
+    echo $cli->body;
+    $cli->push("hello world");
+});
+
+// 向WebSocket服务器发送数据
+bool swoole_http_client->push(string $data, int $opcode = WEBSOCKET_OPCODE_TEXT, bool $finish = true)
+
+// 更底层的Http请求方法，需要代码中调用setMethod和setData等接口设置请求的方法和数据
+function swoole_http_client->execute(string $path, callable $callback);
+
+// 通过Http下载文件
+function swoole_http_client->download(string $path, string $filename, callable $callback, int $offset=0);
+// 例：
+$cli->download('/video.avi', __DIR__.'/video.avi', function ($cli) {
+    var_dump($cli->downloadFile);
+});
+
+// 关闭连接
+bool swoole_http_client->close()
+              </pre>
+                    </section>
+
+                    <section class="cmd-description grid-item">
+                        <h4><a name="async_Http2_client" href="#async_Http2_client">异步Http2.0客户端</a> <a href="https://wiki.swoole.com/wiki/page/708.html" title="async http2.0 client @ Swoole Docs"><i class="icon-file-text"></i></a></h4>
+                        <pre class="prettyprint lang-php">
+Swoole-1.9.7增加了对Http2.0客户端的支持。新增的客户端类名为Swoole\Http2\Client，继承自Swoole\Client，实现了Http2.0客户端协议的完整支持。
+Http2.0客户端与Http1.1的最大差别是2.0支持了Stream并发机制，可以同时发起多个GET或POST请求。最大并发数量受限与服务器端规定的max_concurrent_streams设置。
+
+编译安装
+需要依赖nghttp2库，编译Swoole扩展时需要设置--enable-http2、--enable-openssl或--with-openssl-dir。
+
+// 使用示例
+$array = array(
+    "host" => "www.jd.com",
+    "accept-encoding" => "gzip, deflate",
+    'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+    'accept-language' => 'zh-CN,zh;q=0.8,en;q=0.6,zh-TW;q=0.4,ja;q=0.2',
+    'user-agent' => 'Mozilla/5.0 (X11; Linux x86_64) Chrome/58.0.3026.3 Safari/537.36',
+);
+
+// 构造方法，与swoole_http_client的构造方法参数完全一致
+$client = new Swoole\Http2\Client("www.jd.com", 443, true);
+
+// 设置Http请求头
+$client->setHeaders($array);
+
+// 设置Cookie
+$client->setCookies(array("a" => "1", "b" => "2"));
+
+// 发起GET请求
+$client->get("/", function ($o) use($client) {
+    echo "#{$client->sock} hello world 1\n";
+    echo $o->body;
+});
+
+// 发起POST请求
+$client->post("/", $array, function ($o) use($client) {
+    echo "{$client->sock} hello world 3\n";
+    echo $o->body;
+    $client->close();
+});
+Swoole\Event::wait();
+              </pre>
+
+                    </section>
+
+                    <section class="cmd-description grid-item">
+                        <h4><a name="Lock" href="#Lock">Lock</a> <a href="https://wiki.swoole.com/wiki/page/p-lock.html" title="Lock @ Swoole Docs"><i class="icon-file-text"></i></a></h4>
+                        <pre class="prettyprint lang-php">
+swoole1.6.4版本增加了锁的实现。PHP代码中可以很方便地创建一个锁，用来实现数据同步。swoole_lock类支持5种锁的类型：
+
+文件锁 SWOOLE_FILELOCK
+读写锁 SWOOLE_RWLOCK
+信号量 SWOOLE_SEM
+互斥锁 SWOOLE_MUTEX
+自旋锁 SWOOLE_SPINLOCK
+注意：请勿在onReceive等回调函数中创建锁，否则底层的GlobalMemory内存会持续增长，造成内存泄漏。
+
+// 示例：
+$lock = new swoole_lock(SWOOLE_MUTEX);
+echo "[Master]create lock\n";
+$lock->lock();
+if (pcntl_fork() > 0) {
+    sleep(1);
+    $lock->unlock();
+} else {
+    echo "[Child] Wait Lock\n";
+    $lock->lock();
+    echo "[Child] Get Lock\n";
+    $lock->unlock();
+    exit("[Child] exit\n");
+}
+echo "[Master]release lock\n";
+unset($lock);
+sleep(1);
+echo "[Master]exit\n";
+              </pre>
+
+                        <h6>函数列表</h6>
+                        <pre class="prettyprint lang-php">
+// 构造函数
+swoole_lock->__construct(int $type, [string $lockfile])
+
+// 加锁操作。如果有其他进程持有锁，那这里将进入阻塞，直到持有锁的进程unlock，加锁成功返回true
+$lock->lock();
+
+// 加锁操作。与lock方法不同的是，trylock()不会阻塞，它会立即返回
+$lock->trylock();
+
+// 释放锁，解锁成功返回true
+$lock->unlock();
+
+// 只读加锁。lock_read方法表示仅锁定读。
+bool $lock->lock_read();
+
+// 加锁。此方法与lock_read相同，但是非阻塞的
+$lock->trylock_read();
+
+// 加锁操作，作用于swoole_lock->lock一致，但lockwait可以设置超时时间
+function swoole_lock->lockwait(float $timeout = 1.0) : bool;
+              </pre>
+
+                    </section>
+                    <section class="cmd-description grid-item">
+                        <h4><a name="Buffer" href="#Buffer">Buffer</a> <a href="https://wiki.swoole.com/wiki/page/246.html" title="Buffer @ Swoole Docs"><i class="icon-file-text"></i></a></h4>
+                        <pre class="prettyprint lang-php">
+// Buffer
+swoole1.7.5提供了一个swoole_buffer类，让PHP开发者可以像C一样直接读写内存，提升程序的性能，又不用担心内存越界。swoole_buffer会检测offset。
+swoole_buffer申请的内存并非共享内存，所以无法在多个进程间被共享
+
+// 属性列表
+swoole_buffer->$length 当前数据的长度
+swoole_buffer->$capacity 当前缓存区的容量
+
+// 创建一个内存对象
+swoole_buffer->__construct(int $size = 128);
+
+// 将一个字符串数据追加到缓存区末尾
+int swoole_buffer->append(string $data);
+
+// 从缓冲区中取出内容
+string swoole_buffer->substr(int $offset, int $length = -1, bool $remove = false);
+
+// 清理缓存区数据
+swoole_buffer->clear()
+
+// 为缓存区扩容
+swoole_buffer->expand(int $new_size);
+
+// 向缓存区的任意内存位置写数据
+swoole_buffer->write(int $offset, string $data)
+
+// 读取缓存区任意位置的内存
+swoole_buffer->read(int $offset, int $length)
+
+// 回收缓冲中已经废弃的内存
+swoole_buffer->recycle();
+              </pre>
+
+                    </section>
+
+                    <section class="cmd-description grid-item">
+                        <h4><a name="Table" href="#Table">Table</a> <a href="https://wiki.swoole.com/wiki/page/p-table.html" title="Table @ Swoole Docs"><i class="icon-file-text"></i></a></h4>
+                        <pre class="prettyprint lang-php">
+swoole_table一个基于共享内存和锁实现的超高性能，并发数据结构。用于解决多进程/多线程数据共享和同步加锁问题。
+最新版本已移除lock和unlock方法，请使用Swoole\Lock来实现数据同步
+
+// swoole_table的优势
+性能强悍，单线程每秒可读写200万次
+应用代码无需加锁，swoole_table内置行锁自旋锁，所有操作均是多线程/多进程安全。用户层完全不需要考虑数据同步问题。
+支持多进程，swoole_table可以用于多进程之间共享数据
+使用行锁，而不是全局锁，仅当2个进程在同一CPU时间，并发读取同一条数据才会进行发生抢锁
+swoole_table不受PHP的memory_limit控制
+swoole_table在1.7.5以上版本可用
+
+// 遍历Table
+swoole_table类实现了迭代器和Countable接口，可以使用foreach进行遍历，使用count计算当前行数。
+遍历Table 依赖pcre 如果发现无法遍历table,检查机器是否安装pcre-devel
+foreach($table as $row){
+    var_dump($row);
+}
+echo count($table);
+
+// 常量
+swoole_table::TYPE_INT 整形字段
+swoole_table::TYPE_FLOAT 浮点字段
+swoole_table::TYPE_STRING 字符串字段
+
+// 构造函数
+swoole_table->__construct(int $size, float $conflict_proportion = 0.2)
+
+// 内存表增加一列
+bool swoole_table->column(string $name, int $type, int $size = 0);
+
+// 创建内存表
+function swoole_table->create() : bool;
+
+// 设置行的数据，swoole_table使用key-value的方式来访问数据
+swoole_table->set(string $key, array $value)
+$table->set('1', ['id' => 1, 'name' => 'test1', 'age' => 20]);
+
+// 原子自增操作
+function swoole_table->incr(string $key, string $column, mixed $incrby = 1);
+
+// 原子自减操作
+function swoole_table->decr(string $key, string $column, mixed $decrby = 1);
+
+// 获取一行数据
+array swoole_table->get(string $key, string $field = null);
+
+// 检查table中是否存在某一个key
+bool swoole_table->exist(string $key);
+
+// 删除数据
+bool swoole_table->del(string $key)
+
+// 返回table中存在的条目数
+int function swoole_table->count();
+
+// 例子：
+$table = new swoole_table(1024);
+$table->column('name', swoole_table::TYPE_STRING, 64);
+$table->column('id', swoole_table::TYPE_INT, 4);
+$table->column('num', swoole_table::TYPE_FLOAT);
+$table->create();
+$table->set('tianfenghan@qq.com', array('id' => 145, 'name' => 'rango1', 'num' => 3.1415));
+$table->set('350749960@qq.com', array('id' => 358, 'name' => "Rango2", 'num' => 3.1415));
+$table->set('hello@qq.com', array('id' => 189, 'name' => 'rango3', 'num' => 3.1415));
+var_dump($table->get('350749960@qq.com'));
+var_dump($table->get('350749960@qq.com', 'name'));
+foreach($table as $key => $value) {
+    var_dump($key, $value);
+}
+echo "======================= Total Elements: {$table->count()} ============================\n";
+// delete a exist element
+$table->del('350749960@qq.com');
+foreach($table as $key => $value) {
+    var_dump($key, $value);
+}
+echo "======================= Total Elements: {$table->count()} ============================\n";
+// delete a invalid element
+$ret = $table->del('a invalid key');
+var_dump($ret);
+foreach($table as $key => $value) {
+    var_dump($key, $value);
+}
+echo "======================= Total Elements: {$table->count()} ============================\n";
+              </pre>
+
+                    </section>
+
+                    <section class="cmd-description grid-item">
+                        <h4><a name="Atomic" href="#Atomic">Atomic</a> <a href="https://wiki.swoole.com/wiki/page/p-atomic.html" title="Atomic @ Swoole Doc"><i class="icon-file-text"></i></a></h4>
+
+                        <h6>说明</h6>
+                        <pre class="prettyprint lang-php">
+swoole_atomic是swoole扩展提供的原子计数操作类，可以方便整数的无锁原子增减。
+
+swoole_atomic使用共享内存，可以在不同的进程之间操作计数
+swoole_atomic基于gcc提供的CPU原子指令，无需加锁
+swoole_atomic在服务器程序中必须在swoole_server->start前创建才能在Worker进程中使用
+swoole_atomic默认使用32位无符号类型，如需要64有符号整型，可使用Swoole\Atomic\Long
+注意：请勿在onReceive等回调函数中创建原子数，否则底层的GlobalMemory内存会持续增长，造成内存泄漏。
+
+swoole_atomic在1.7.19以上版本可用
+Swoole\Atomic\Long在1.9.20以上版本可用
+
+// 64位长整型
+1.9.20版本增加了对64位有符号长整型原子计数的支持。使用new Swoole\Atomic\Long 来创建。
+Swoole\Atomic\Long 不支持wait和wakeup方法
+                        </pre>
+                        <h6>函数列表</h6>
+                        <pre class="prettyprint lang-php">
+// 创建一个原子计数对象。
+function swoole_atomic->__construct(int $init_value = 0)
+
+// 增加计数
+function swoole_atomic->add(int $add_value = 1)
+
+// 减少计数
+function swoole_atomic->sub(int $sub_value = 1)
+
+// 获取当前计数的值
+function swoole_atomic->get()
+
+// 将当前值设置为指定的数字。
+function swoole_atomic->set(int $value);
+
+// 如果当前数值等于参数1，则将当前数值设置为参数2
+function swoole_atomic->cmpset(int $cmp_value, int $set_value);
+
+// 当原子计数的值为0时程序进入等待状态
+function swoole_atomic->wait(float $timeout = -1) : bool
+
+// 唤醒处于wait状态的其他进程
+function swoole_atomic->wakeup(int $n = 1);
+  </pre>
+                        <h6>使用示例</h6>
+                        <pre class="prettyprint lang-php">
+$atomic = new swoole_atomic(123);
+echo $atomic->add(12)."\n";
+echo $atomic->sub(11)."\n";
+echo $atomic->cmpset(122, 999)."\n";
+echo $atomic->cmpset(124, 999)."\n";
+echo $atomic->get()."\n";
+
+$n = new swoole_atomic;
+if (pcntl_fork() > 0) {
+    echo "master start\n";
+    $n->wait(1.5);
+    echo "master end\n";
+} else {
+    echo "child start\n";
+    sleep(1);
+    $n->wakeup();
+    echo "child end\n";
+}
+              </pre>
+
+                    </section>
+
+                    <section class="cmd-description grid-item">
+                        <h4><a name="mmap" href="#mmap">mmap</a><a href="https://wiki.swoole.com/wiki/page/p-mmap.html" title="mmap @ Swoole Docs"><i class="icon-file-text"></i></a></h4>
+                        <h6>说明</h6>
+                        <pre class="prettyprint lang-php">
+swoole-1.9.0增加了一个新的模块，提供了对操作系统mmap的封装。使用mmap可以很方便地将一个磁盘文件映射为内存，读写性能更高。
+mmap可以减少读写磁盘操作的IO消耗、减少内存拷贝。在实现高性能的磁盘操作程序中，可以使用mmap来提升性能。
+              </pre>
+                        <h6>函数</h6>
+                        <pre class="prettyprint lang-php">
+// 创建文件内存映射，函数原型：
+function swoole_mmap::open($file, $size = -1, $offset = 0);
+
+$file = __DIR__.'/data';
+$size = 8192;
+if (!is_file($file)) {
+    file_put_contents($file, str_repeat("\0", $size));
+}
+$fp = swoole\mmap::open($file, 8192);
+
+fwrite($fp, "hello world\n");
+fwrite($fp, "hello swoole\n");
+
+fflush($fp);
+fclose($fp);
+              </pre>
+
+                    </section>
+
+                    <section class="cmd-description grid-item">
+                        <h4><a name="Channel" href="#Channel">Channel</a> <a href="https://wiki.swoole.com/wiki/page/p-channel.html" title="Channel @ Swoole Docs"><i class="icon-file-text"></i></a></h4>
+                        <h6>说明</h6>
+                        <pre class="prettyprint lang-php">
+Swoole-1.9.0新增了一个新的内存数据结构Channel，类似于Go的chan通道，底层基于共享内存+Mutex互斥锁实现，可实现用户态的高性能内存队列。
+Channel可用于多进程环境下，底层在读取写入时会自动加锁，应用层不需要担心数据同步问题
+必须在父进程内创建才可以在子进程内使用
+Channel不受PHP的memory_limit控制
+              </pre>
+                        <h6>函数列表</h6>
+                        <pre class="prettyprint lang-php">
+// 创建通道。函数原型
+function Channel->__construct(int $size);
+
+// 向通道写入数据，函数原型：
+bool function Channel->push(mixed $data);
+
+// 弹出数据，函数原型：
+function Channel->pop() : mixed;
+
+// 获取通道的状态。函数原型：
+function Channel->stats() : array;
+              </pre>
+                        <h6>例子</h6>
+                        <pre class="prettyprint lang-php">
+$chan = new Swoole\Channel(1024 * 256);
+$n = 100000;
+$bytes = 0;
+if (pcntl_fork() > 0)
+{
+    echo "Father\n";
+    for ($i = 0; $i < $n; $i++)
+    {
+        $data = str_repeat('A', rand(100, 200));
+        if ($chan->push($data) === false)
+        {
+            echo "channel full\n";
+            usleep(1000);
+            $i--;
+            continue;
+        }
+        $bytes += strlen($data);
+    }
+    echo "total push bytes: $bytes\n";
+    var_dump($chan->stats());
+}
+else
+{
+    echo "Child\n";
+    for ($i = 0; $i < $n; $i++)
+    {
+        $data = $chan->pop();
+        if ($data === false)
+        {
+            echo "channel empty\n";
+            usleep(1000);
+            $i--;
+            continue;
+        }
+        $bytes += strlen($data);
+    }
+    echo "total pop bytes: $bytes\n";
+    var_dump($chan->stats());
+}
+              </pre>
+                    </section>
+
+                    <section class="cmd-description grid-item">
+                        <h4><a name="Serialize" href="#Serialize">Serialize</a> <a href="https://wiki.swoole.com/wiki/page/p-serialize.html" title="Serialize @ Swoole Docs"><i class="icon-file-text"></i></a></h4>
+                        <h6>说明</h6>
+                        <pre class="prettyprint lang-js">
+1.9.6版本增加了一个新的模块swoole_serialize，是一个高性能的序列化库，
+与PHP官方提供的serialize和json_encode相比，swoole_serialize的不同之处是：
+
+序列化后的结果为二进制格式，只适合机器读取，不适合人读
+序列化性能更高，可节省大量CPU资源，基准测试中序列化和反序列化耗时为PHP官方serialize的40%
+序列化后的结果数据尺寸更小，可节省内存资源，基准测试中序列化结果尺寸为PHP官方serialize的50%
+serialize模块仅在PHP7或更高版本中可用
+
+可修改php.ini配置，在swoole_server中的task功能中使用swoole_serialize对异步任务数据序列化。
+swoole.fast_serialize=On
+
+swoole_serialize模块可单独编译安装，不需要依赖swoole扩展。
+              </pre>
+                        <h6>函数列表</h6>
+                        <pre class="prettyprint lang-php">
+// 将PHP变量序列化，函数原型：
+function swoole_serialize::pack(mixed $data, int $flags = 0);
+
+// 反序列化，函数原型：
+function swoole_serialize::unpack(string $data);
+              </pre>
+                        <h6>示例</h6>
+                        <pre class="prettyprint lang-php">
+$arr = array(
+    1111111111111
+);
+$obj = new \Swoole\Serialize();
+$ser = $obj->pack($arr);
+$ser2 = $obj->pack($arr,SWOOLE_FAST_PACK);
+var_dump($obj->unpack($ser));
+var_dump($obj->unpack($ser2));
+              </pre>
+
+                    </section>
+                    <section class="cmd-description grid-item">
+                        <h4><a name="Process" href="#Process">Process</a> <a href="https://wiki.swoole.com/wiki/page/p-process.html" title="Process @ Swoole Docs"><i class="icon-file-text"></i></a></h4>
+                        <h6>说明</h6>
+                        <pre class="prettyprint lang-php">
+swoole-1.7.2增加了一个进程管理模块，用来替代PHP的pcntl扩展。
+
+需要注意Process进程在系统是非常昂贵的资源，创建进程消耗很大。另外创建的进程过多会导致进程切换开销大幅上升。可以使用vmstat指令查看操作系统每秒进程切换的次数。
+
+vmstat 1 1000
+procs -----------memory---------- ---swap-- -----io---- -system-- ------cpu-----
+ r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st
+ 0  0      0 8250028 509872 4061168    0    0    10    13   88   86  1  0 99  0  0
+ 0  0      0 8249532 509872 4061936    0    0     0     0  451 1108  0  0 100  0  0
+ 0  0      0 8249532 509872 4061884    0    0     0     0  684 1855  1  3 95  0  0
+ 0  0      0 8249532 509880 4061876    0    0     0    16  492 1332  0  0 99  0  0
+ 0  0      0 8249532 509880 4061844    0    0     0     0  379  893  0  0 100  0  0
+ 0  0      0 8249532 509880 4061844    0    0     0     0  440 1116  0  0 99  0  0
+
+PHP自带的pcntl，存在很多不足，如
+pcntl没有提供进程间通信的功能
+pcntl不支持重定向标准输入和输出
+pcntl只提供了fork这样原始的接口，容易使用错误
+swoole_process提供了比pcntl更强大的功能，更易用的API，使PHP在多进程编程方面更加轻松。
+                            s
+swoole_process提供了如下特性：
+swoole_process提供了基于unixsock的进程间通信，使用很简单只需调用write/read或者push/pop即可
+swoole_process支持重定向标准输入和输出，在子进程内echo不会打印屏幕，而是写入管道，读键盘输入可以重定向为管道读取数据
+配合swoole_event模块，创建的PHP子进程可以异步的事件驱动模式
+swoole_process提供了exec接口，创建的进程可以执行其他程序，与原PHP父进程之间可以方便的通信
+                </pre>
+                        <h6>函数列表</h6>
+                        <pre class="prettyprint lang-php">
+// 创建子进程
+swoole_process::__construct(callable $function, $redirect_stdin_stdout = false, $pipe_type = 2);
+
+// 执行fork系统调用，启动进程
+function swoole_process->start() : int
+
+// 修改进程名称。此函数是swoole_set_process_name的别名
+$process->name("php server.php: worker");
+
+// 执行一个外部程序，此函数是exec系统调用的封装
+bool swoole_process->exec(string $execfile, array $args)
+
+// 向管道内写入数据
+int swoole_process->write(string $data);
+
+// 从管道中读取数据
+function swoole_process->read(int $buffer_size=8192) : string | bool;
+
+// 设置管道读写操作的超时时间
+function swoole_process->setTimeout(double $timeout)
+
+// 设置管道是否为阻塞模式。默认Process的管道为同步阻塞
+function swoole_process->setBlocking(bool $blocking = true);
+
+// 启用消息队列作为进程间通信
+bool swoole_process->useQueue(int $msgkey = 0, int $mode = 2);
+
+// 查看消息队列状态
+array swoole_process->statQueue();
+
+// 删除队列。此方法与useQueue成对使用，useQueue创建队列，使用freeQueue销毁队列。销毁队列后队列中的数据会被清空。
+function swoole_process->freeQueue();
+
+// 投递数据到消息队列中
+bool swoole_process->push(string $data);
+
+// 从队列中提取数据
+string swoole_process->pop(int $maxsize = 8192);
+
+// 用于关闭创建的好的管道。
+bool swoole_process->close(int $which = 0);
+
+// 退出子进程
+int swoole_process->exit(int $status=0);
+
+// 向指定pid进程发送信号
+bool swoole_process::kill($pid, $signo = SIGTERM);
+
+// 回收结束运行的子进程。
+array swoole_process::wait(bool $blocking = true);
+
+// 使当前进程蜕变为一个守护进程。
+// 低于1.9.1的版本
+bool swoole_process::daemon(bool $nochdir = false, bool $noclose = false);
+// 1.9.1或更高版本
+bool swoole_process::daemon(bool $nochdir = true, bool $noclose = true);
+
+// 设置异步信号监听。
+bool swoole_process::signal(int $signo, callable $callback);
+
+// 高精度定时器，是操作系统setitimer系统调用的封装，可以设置微秒级别的定时器。
+function swoole_process::alarm(int $interval_usec, int $type = ITIMER_REAL) : bool
+
+// 设置CPU亲和性，可以将进程绑定到特定的CPU核上。
+function swoole_process::setAffinity(array $cpu_set);
+                </pre>
+
+                        <h6>例子</h6>
+                        <pre class="prettyprint lang-php">
+(new class{
+    public $mpid=0;
+    public $works=[];
+    public $max_precess=1;
+    public $new_index=0;
+
+    public function __construct(){
+        try {
+            swoole_set_process_name(sprintf('php-ps:%s', 'master'));
+            $this->mpid = posix_getpid();
+            $this->run();
+            $this->processWait();
+        }catch (\Exception $e){
+            die('ALL ERROR: '.$e->getMessage());
+        }
+    }
+
+    public function run(){
+        for ($i=0; $i < $this->max_precess; $i++) {
+            $this->CreateProcess();
+        }
+    }
+
+    public function CreateProcess($index=null){
+        $process = new swoole_process(function(swoole_process $worker)use($index){
+            if(is_null($index)){
+                $index=$this->new_index;
+                $this->new_index++;
+            }
+            swoole_set_process_name(sprintf('php-ps:%s',$index));
+            for ($j = 0; $j < 16000; $j++) {
+                $this->checkMpid($worker);
+                echo "msg: {$j}\n";
+                sleep(1);
+            }
+        }, false, false);
+        $pid=$process->start();
+        $this->works[$index]=$pid;
+        return $pid;
+    }
+    public function checkMpid(&$worker){
+        if(!swoole_process::kill($this->mpid,0)){
+            $worker->exit();
+            echo "这句提示,实际是看不到的.需要写到日志中,Master process exited, I [{$worker['pid']}] also quit\n";
+        }
+    }
+
+    public function rebootProcess($ret){
+        $pid=$ret['pid'];
+        $index=array_search($pid, $this->works);
+        if($index!==false){
+            $index=intval($index);
+            $new_pid=$this->CreateProcess($index);
+            echo "rebootProcess: {$index}={$new_pid} Done\n";
+            return;
+        }
+        throw new \Exception('rebootProcess Error: no pid');
+    }
+
+    public function processWait(){
+        while(1) {
+            if(count($this->works)){
+                $ret = swoole_process::wait();
+                if ($ret) {
+                    $this->rebootProcess($ret);
+                }
+            }else{
+                break;
+            }
+        }
+    }
+});
+                        </pre>
+                    </section>
+
+                    <section class="cmd-description grid-item">
+                        <h4><a name="HttpServer" href="#HttpServer">HttpServer</a> <a href="https://wiki.swoole.com/wiki/page/326.html" title="HttpServer @ Swoole Docs"><i class="icon-file-text"></i></a></h4>
+                        <h6>说明</h6>
+                        <pre class="prettyprint lang-js">
+swoole_http_server对Http协议的支持并不完整，建议仅作为应用服务器。并且在前端增加Nginx作为代理
+              </pre>
+                        <h6>swoole_http_server <a href="https://wiki.swoole.com/wiki/page/327.html" title="swoole_http_server @ Swoole Docs"><i class="icon-file-text"></i></a></h6>
+                        <pre class="prettyprint lang-php">
+// swoole_http_server继承自swoole_server，是一个完整的http服务器实现
+$http = new swoole_http_server("127.0.0.1", 9501);
+
+// 注册事件回调函数，与swoole_server->on相同。swoole_http_server->on的不同之处是：
+// 不接受onConnect/onReceive回调设置，额外接受1种新的事件类型onRequest
+$http->on('request', function ($request, $response) {
+    $response->end("Hello Swoole. #".rand(1000, 9999));
+});
+// 启动Http服务器
+$http->start();
+              </pre>
+                        <h6>swoole_http_request <a href="https://wiki.swoole.com/wiki/page/328.html" title="swoole_http_request @ Swoole Docs"><i class="icon-file-text"></i></a></h6>
+                        <pre class="prettyprint lang-php">
+// Http请求对象，保存了Http客户端请求的相关信息，包括GET、POST、COOKIE、Header等。
+// Request对象销毁时会自动删除上传的临时文件,请勿使用&符号引用$request对象
+
+// Http请求的头部信息。类型为数组，所有key均为小写
+swoole_http_request->$header
+echo $request->header['host'];
+echo $request->header['accept-language'];
+
+// Http请求相关的服务器信息，相当于PHP的$_SERVER数组。包含了Http请求的方法，URL路径，客户端IP等信息。
+// 数组的key全部为小写，并且与PHP的$_SERVER数组保持一致
+swoole_http_request->$server
+
+// Http请求的GET参数，相当于PHP中的$_GET，格式为数组。为防止HASH攻击，GET参数最大不允许超过128个
+swoole_http_request->$get
+
+// 如：index.php?hello=123
+echo $request->get['hello'];
+// 获取所有GET参数
+var_dump($request->get);
+
+// HTTP POST参数，格式为数组。POST与Header加起来的尺寸不得超过package_max_length的设置，否则会认为是恶意请求,POST参数的个数最大不超过128个
+swoole_http_request->$post
+echo $request->post['hello'];
+
+// HTTP请求携带的COOKIE信息，与PHP的$_COOKIE相同，格式为数组。
+swoole_http_request->$cookie
+echo $request->cookie['username'];
+
+// 文件上传信息。类型为以form名称为key的二维数组。与PHP的$_FILES相同。
+// 最大文件尺寸不得超过package_max_length设置的值。请勿使用Swoole\Http\Server处理大文件上传。
+swoole_http_request->$files
+
+// 获取原始的POST包体，用于非application/x-www-form-urlencoded格式的Http POST请求。
+// 返回原始POST数据，此函数等同于PHP的fopen('php://input')
+string swoole_http_request->rawContent();
+
+// 获取完整的原始Http请求报文。包括Http Header和Http Body
+string swoole_http_request->getData();
+              </pre>
+
+                    <h6>swoole_http_response <a href="https://wiki.swoole.com/wiki/page/329.html" title="swoole_http_response @ Swoole Docs"><i class="icon-file-text"></i></a></h6>
+                    <pre class="prettyprint lang-php">
+// Http响应对象，通过调用此对象的方法，实现Http响应发送。请勿使用&符号引用$response对象
+// 当Response对象销毁时，如果未调用end发送Http响应，底层会自动执行end
+
+// 设置HTTP响应的Header信息。header设置必须在end方法之前,$key必须完全符合Http的约定,Swoole底层不允许设置相同$key的Http头
+function swoole_http_response->header(string $key, string $value, bool $ucwords = true);
+
+$response->header('Content-Type', 'image/jpeg', false);
+$response->header('content-type', 'image/jpeg', true);
+
+// 设置HTTP响应的cookie信息。此方法参数与PHP的setcookie完全一致。cookie设置必须在end方法之前,底层允许设置多个相同$key的COOKIE
+swoole_http_response->cookie(string $key, string $value = '', int $expire = 0 , string $path = '/', string $domain  = '', bool $secure = false , bool $httponly = false);
+
+// 发送Http状态码。$http_status_code必须为合法的HttpCode，如200， 502， 301, 404等，否则会报错,必须在$response->end之前执行status
+swoole_http_response->status(int $http_status_code);
+
+// 发送Http跳转。调用此方法会自动end发送并结束响应。
+function swoole_http_response->redirect(string $url, int $http_code = 302);
+
+// 启用Http Chunk分段向浏览器发送相应内容。关于Http Chunk可以参考Http协议标准文档。
+bool swoole_http_response->write(string $data);
+
+// 发送文件到浏览器。
+function swoole_http_response->sendfile(string $filename, int $offset = 0, int $length = 0);
+
+// 发送Http响应体，并结束请求处理。end只能调用一次，如果需要分多次向客户端发送数据，请使用write方法
+// 客户端未开启KeepAlive，服务器将会切断连接
+swoole_http_response->end(string $html);
+
+// 分离响应对象。使用此方法后，$response对象销毁时不会自动end，与swoole_http_response::create和Server::send配合使用。
+function swoole_http_response->detach();
+
+// 构造新的Http\Response对象。使用此方法前请务必调用detach方法将旧的$response对象分离，否则可能会造成对同一个请求发送两次响应内容。
+function swoole_http_response::create(int $fd) : swoole_http_response;
+
+$http = new swoole_http_server("0.0.0.0", 9501);
+$http->on('request', function ($req, Swoole\Http\Response $resp) use ($http) {
+    $resp->detach();
+    $resp2 = Swoole\Http\Response::create($req->fd);
+    $resp2->end("hello world");
+});
+$http->start();
+              </pre>
+                    <h6>配置选项 <a href="https://wiki.swoole.com/wiki/page/620.html" title="swoole_http_config @ Swoole Docs"><i class="icon-file-text"></i></a></h6>
+                    <pre class="prettyprint lang-php">
+// Http\Server除了可以设置Server相关选项外，还可以设置一些特有的选项
+
+// 设置上传文件的临时目录。
+$serv->set(['upload_tmp_dir' => '/data/uploadfiles/']);
+
+// 设置POST消息解析开关，选项为true时自动将Content-Type为x-www-form-urlencoded的请求包体解析到POST数组。设置为false时将关闭POST解析。
+$serv->set(['http_parse_post' => false]);
+
+// 配置静态文件根目录，与enable_static_handler配合使用。
+$server->set([
+    'document_root' => '/data/webroot/example.com',
+    'enable_static_handler' => true,
+]);
+
+// 启用压缩。默认为开启。http-chunk不支持分段单独压缩, 已强制关闭压缩.
+// 目前支持gzip、br、deflate 三种压缩格式，底层会根据浏览器客户端传入的Accept-Encoding头自动选择压缩方式
+$sever->set([
+    'http_compression' => true,
+    'http_compression_level' => 5,
+]);
+              </pre>
+                    </section>
+
+                    <section class="cmd-description grid-item">
+                        <h4><a name="WebSocket" href="#WebSocket">WebSocket</a> <a href="https://wiki.swoole.com/wiki/page/397.html" title="WebSocket @ Swoole Docs"><i class="icon-file-text"></i></a></h4>
+                        <h6>WebSocket 例子 <a href="https://wiki.swoole.com/wiki/page/327.html" title="WebSocket @ Swoole Docs"><i class="icon-file-text"></i></a></h6>
+                        <pre class="prettyprint lang-php">
+$server = new swoole_websocket_server("0.0.0.0", 9501);
+$server->on('open', function (swoole_websocket_server $server, $request) {
+    echo "server: handshake success with fd{$request->fd}\n";
+});
+$server->on('message', function (swoole_websocket_server $server, $frame) {
+    echo "receive from {$frame->fd}:{$frame->data},opcode:{$frame->opcode},fin:{$frame->finish}\n";
+    $server->push($frame->fd, "this is server");
+});
+$server->on('close', function ($ser, $fd) {
+    echo "client {$fd} closed\n";
+});
+$server->start();
+              </pre>
+                <h6>回调函数 <a href="https://wiki.swoole.com/wiki/page/400.html" title="WebSocket @ Swoole Docs"><i class="icon-file-text"></i></a></h6>
+                <pre class="prettyprint lang-php">
+// WebSocket除了接收Swoole\Server和Swoole\Http\Server基类的回调函数外，额外增加了3个回调函数设置.
+
+// WebSocket建立连接后进行握手。WebSocket服务器已经内置了handshake，设置onHandShake事件回调函数进行握手处理。
+// 设置onHandShake回调函数后不会再触发onOpen事件，需要应用代码自行处理,可选设置
+function onHandShake(swoole_http_request $request, swoole_http_response $response);
+
+// 当WebSocket客户端与服务器建立连接并完成握手后会回调此函数，可选设置
+// $req 是一个Http请求对象，包含了客户端发来的握手请求信息
+// onOpen事件函数中可以调用push向客户端发送数据或者调用close关闭连接
+function onOpen(swoole_websocket_server $svr, swoole_http_request $req);
+
+// 当服务器收到来自客户端的数据帧时会回调此函数。必选设置
+// $frame 是swoole_websocket_frame对象，包含了客户端发来的数据帧信息
+// 客户端发送的ping帧不会触发onMessage，底层会自动回复pong包
+function onMessage(swoole_websocket_server  $server, swoole_websocket_frame $frame)
+              </pre>
+
+                <h6>函数列表 <a href="https://wiki.swoole.com/wiki/page/398.html" title="WebSocket @ Swoole Docs"><i class="icon-file-text"></i></a></h6>
+                <span class="info"> Swoole\WebSocket\Server是Swoole\Server的子类，因此可以调用Swoole\Server的全部方法。需要注意WebSocket服务器向客户端发送数据应当使用Swoole\WebSocket\Server::push方法，此方法会进行WebSocket协议打包。而Swoole\Server::send方法是原始的TCP发送接口。 Swoole\WebSocket\Server::disconnect方法可以从服务端主动关闭一个WebSocket连接，可以指定状态码(根据WebSocket协议，可使用的状态码为十进制的一个整数，取值可以是1000或4000-4999)和关闭原因(采用utf-8编码、字节长度不超过125的字符串)。在未指定情况下状态码为1000，关闭原因为空。</span>
+                <pre class="prettyprint lang-php">
+// 向websocket客户端连接推送数据，长度最大不得超过2M。
+function swoole_websocket_server->push(int $fd, $data, int $opcode = 1, bool $finish = true);
+
+// 判断WebSocket客户端是否存在，并且状态为Active状态。
+function swoole_websocket_server->exist(int $fd);
+
+// 打包WebSocket消息。
+function swoole_websocket_server::pack(string $data, int $opcode = 1, bool $finish = true, bool $mask = false);
+
+// 解析WebSocket数据帧。
+swoole_websocket_server::unpack(string $data);
+
+// 主动向websocket客户端发送关闭帧并关闭该连接
+function swoole_websocket_server->disconnect(int $fd, int $code = 1000, string $reason = "");
+              </pre>
+                <h6>预定义常量 <a href="https://wiki.swoole.com/wiki/page/413.html" title="WebSocket @ Swoole Docs"><i class="icon-file-text"></i></a></h6>
+                <pre class="prettyprint lang-php">
+WebSocket数据帧类型:
+WEBSOCKET_OPCODE_TEXT = 0x1，UTF-8文本字符数据
+WEBSOCKET_OPCODE_BINARY = 0x2，二进制数据
+
+从1.9版本起:
+WEBSOCKET_OPCODE_PING = 0x9，ping类型数据
+
+WebSocket连接状态:
+WEBSOCKET_STATUS_CONNECTION = 1，连接进入等待握手
+WEBSOCKET_STATUS_HANDSHAKE = 2，正在握手
+WEBSOCKET_STATUS_FRAME = 3，已握手成功等待浏览器发送数据帧
+              </pre>
+
+              <h6>配置选项 <a href="https://wiki.swoole.com/wiki/page/825.html" title="WebSocket @ Swoole Docs"><i class="icon-file-text"></i></a></h6>
+              <pre class="prettyprint lang-php">
+WebSocket\Server是Server的子类，可以使用Server::set方法传入配置选项，设置某些参数。
+
+websocket_subprotocol 设置WebSocket子协议
+open_websocket_close_frame 启用websocket协议中关闭帧（opcode为0x08的帧）在onMessage回调中接收，默认为false。
+        </pre>
+                    </section>
+
+                    <section class="cmd-description grid-item">
+                <h4><a name="ProcessPool" href="#WebSocket">Process\Pool</a> <a href="https://wiki.swoole.com/wiki/page/p-process_pool.html" title="Process\Pool @ Swoole Docs"><i class="icon-file-text"></i></a></h4>
+                <pre class="prettyprint lang-php">
+进程池，基于Server的Manager模块实现。可管理多个工作进程。该模块的核心功能为进程管理，相比Process实现多进程，Process\Pool更加简单，封装层次更高，开发者无需编写过多代码即可实现进程管理功能。
+此特性需要2.1.2或更高版本
+                </pre>
+
+                <h6>常量定义</h6>
+                <pre class="prettyprint lang-php">
+SWOOLE_IPC_MSGQUEUE  系统消息队列通信
+SWOOLE_IPC_SOCKET SOCKET通信
+                </pre>
+                <h6>异步支持</h6>
+                <pre class="prettyprint lang-php">
+可在onWorkerStart中使用Swoole提供的异步或协程API，工作进程即可实现异步
+底层自带的消息队列和SOCKET通信均为同步阻塞IO
+如果进程为异步模式，请勿使用任何自带的同步IPC进程通信功能 (无法使用message回调)
+低于4.0版本需要在onWorkerStart末尾添加swoole_event_wait进入事件循环
+                </pre>
+                <h6>使用实例</h6>
+                <pre class="prettyprint lang-php">
+$workerNum = 10;
+$pool = new Swoole\Process\Pool($workerNum);
+$pool->on("WorkerStart", function ($pool, $workerId) {
+    echo "Worker#{$workerId} is started\n";
+    $redis = new Redis();
+    $redis->pconnect('127.0.0.1', 6379);
+    $key = "key1";
+    while (true) {
+            $msgs = $redis->brpop($key, 2);
+            if ( $msgs == null) continue;
+            var_dump($msgs);
+        }
+});
+$pool->on("WorkerStop", function ($pool, $workerId) {
+    echo "Worker#{$workerId} is stopped\n";
+});
+$pool->start();
+                </pre>
+
+                <h6>函数列表</h6>
+                <pre class="prettyprint lang-php">
+// 创建进程池
+function Process\Pool::__construct(int $worker_num, int $ipc_type = 0, int $msgqueue_key = 0);
+
+// 设置进程池回调函数
+function Process\Pool::on(string $event, callable $function);
+
+// 子进程启动
+// 子进程结束 onWorkerStop回调函数，与onWorkerStart参数一致
+function onWorkerStart(Swoole\Process\Pool $pool, int $workerId) {
+    echo "Worker// {$workerId} is started\n";
+}
+
+// 消息接收
+function onMessage(Swoole\Process\Pool $pool, string $data) {
+    var_dump($data);
+}
+
+// 监听SOCKET，必须在$ipc_mode为SWOOLE_IPC_SOCKET时才能使用
+function Process\Pool::listen(string $host, int $port = 0, int $backlog = 2048);
+$pool->listen('127.0.0.1', 8089);
+$pool->listen('unix:/tmp/php.sock');
+
+// 向对端写入数据，必须在$ipc_mode为SWOOLE_IPC_SOCKET时才能使用
+function Process\Pool::write(string $data);
+
+$pool = new Swoole\Process\Pool(2, SWOOLE_IPC_SOCKET);
+$pool->on("Message", function ($pool, $message) {
+    echo "Message: {$message}\n";
+    $pool->write("hello ");
+    $pool->write("world ");
+    $pool->write("\n");
+});
+$pool->listen('127.0.0.1', 8089);
+$pool->start();
+
+// 启动工作进程
+function Process\Pool::start() : bool;
+
+// 获取当前工作进程对象。返回Swoole\Process对象,需要 swoole 版本 >= 4.2.0
+function Process\Pool->getProcess() : Process;
+
+$pool->on("WorkerStart", function ($pool, $workerId) {
+    $process = $pool->getProcess();
+    $process->exec("/bin/sh", ["ls", '-l']);
+});
+
+                </pre>
+                    </section>
+
+                    <section class="cmd-description grid-item">
+                <h4><a name="RedisServer" href="#RedisServer">Redis\Server</a> <a href="https://wiki.swoole.com/wiki/page/p-redis_server.html" title="Redis\Server @ Swoole Docs"><i class="icon-file-text"></i></a></h4>
+                <pre class="prettyprint lang-php">
+Swoole-1.8.14版本增加一个兼容Redis服务器端协议的Server框架，可基于此框架实现Redis协议的服务器程序。Swoole\Redis\Server继承自Swoole\Server，可调用父类提供的所有方法。
+Redis\Server不需要设置onReceive回调。
+                </pre>
+
+                <h6>常量定义</h6>
+                <pre class="prettyprint lang-php">
+格式参数常量
+主要用于format函数打包Redis响应数据
+
+Server::NIL 返回nil数据
+Server::ERROR 返回错误码
+Server::STATUS 返回状态
+Server::INT 返回整数，，format必须传入参数值，类型必须为整数
+Server::STRING 返回字符串，format必须传入参数值，类型必须为字符串
+Server::SET 返回列表，format必须传入参数值，类型必须为数组
+Server::MAP 返回Map，format必须传入参数值，类型必须为关联索引数组
+                </pre>
+                <h6>可用的客户端</h6>
+                <pre class="prettyprint lang-php">
+任意编程语言的redis客户端，包括PHP的redis扩展和phpredis库
+Swoole扩展提供的异步Redis客户端
+Redis提供的命令行工具，包括redis-cli、redis-benchmark
+                </pre>
+                <h6>使用实例  <a href="https://github.com/swoole/swoole-src/blob/master/examples/redis/server.php" title="Redis\Server @ Swoole Docs"><i class="icon-file-text"></i></a></h6>
+                <pre class="prettyprint lang-php">
+// 在2.0协程版本中，无法使用return返回值的方式发送响应结果。应当使用$server->send方法发送数据。
+use Swoole\Redis\Server;
+use Swoole\Coroutine\Redis;
+$serv = new Server('0.0.0.0', 10086, SWOOLE_PROCESS, SWOOLE_SOCK_TCP);
+$serv->setHandler('set', function ($fd, $data) use ($serv) {
+    $cli = new Redis;
+    $cli->connect('0.0.0.0', 6379);
+    $cli->set($data[0], $data[1]);
+    $serv->send($fd, Server::format(Server::INT, 1));
+});
+$serv->start();
+                </pre>
+
+                <h6>函数列表</h6>
+                <pre class="prettyprint lang-php">
+Swoole\Redis\Server继承自Swoole\Server，可以使用父类提供的所有方法。
+Redis\Server不需要设置onReceive回调。只需使用setHandler方法设置对应命令的处理函数，收到未支持的命令后会自动向客户端发送ERROR响应，消息为ERR unknown command '$command'。
+
+// 设置Redis命令字的处理器
+function swoole_redis_server->setHandler(string $command, callable $callback);
+
+use Swoole\Redis\Server;
+$server = new Server('127.0.0.1', 9501);
+// 同步模式
+$server->setHandler('Set', function($fd, $data) use ($server) {
+    $server->array($data[0], $data[1]);
+    return Server::format(Server::INT, 1);
+});
+
+// 异步模式
+$server->setHandler('Get', function ($fd, $data) use ($server) {
+    $db->query($sql, function($db, $result) use ($fd) {
+        $server->send($fd, Server::format(Server::LIST, $result));
+    });
+});
+$server->start();
+
+// 客户端实例
+redis-cli -h 127.0.0.1 -p 9501 set name rango
+
+// 格式化命令响应数据,静态方法,$type表示数据类型，NIL类型不需要传入$value，ERROR和STATUS类型$value可选，INT、STRING、SET、MAP必选
+function swoole_redis_server::format(int $type, mixed $value = null);
+                </pre>
+                                </section>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/jquery.highlight-4.js"></script>
+<script src="assets/js/google-code-prettify/prettify.js"></script>
+<script src="assets/js/foundation.min.js"></script>
+<script src="assets/js/masonry.js"></script>
+<script src="assets/js/app.js"></script>
+
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', '', 'auto');
+    ga('send', 'pageview');
+
+</script>
+</body>
+</html>
